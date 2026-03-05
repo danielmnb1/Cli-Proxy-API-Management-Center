@@ -1364,7 +1364,8 @@
     "switch": "语言",
     "chinese": "中文",
     "english": "English",
-    "russian": "Русский"
+    "russian": "Русский",
+    "spanish": "Español"
   },
   "theme": {
     "switch": "主题",

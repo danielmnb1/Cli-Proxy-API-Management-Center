@@ -428,65 +428,69 @@ export function AiProvidersOpenAIEditLayout() {
       await providersApi.saveOpenAIProviders(nextList);
 
       let syncedProviders = nextList;
-    } catch {
-      // En caso de que falle la actualización tras guardar, revertir al resultado calculado localmente para evitar datos vacíos o regresiones en la página.
+      try {
+        syncedProviders = await fetchConfig('openai-compatibility').then((val) =>
+          Array.isArray(val) ? (val as OpenAIProviderConfig[]) : nextList
+        );
+      } catch {
+        // En caso de que falle la actualización tras guardar, revertir al resultado calculado localmente para evitar datos vacíos o regresiones en la página.
+      }
+
+      setProviders(syncedProviders);
+      showNotification(
+        editIndex !== null
+          ? t('notification.openai_provider_updated')
+          : t('notification.openai_provider_added'),
+        'success'
+      );
+      allowNextNavigation();
+      setDraftBaselineSignature(draftKey, buildOpenAISignature(form, testModel));
+      handleBack();
+    } catch (err: unknown) {
+      showNotification(`${t('notification.update_failed')}: ${getErrorMessage(err)}`, 'error');
+    } finally {
+      setSaving(false);
     }
+  }, [
+    allowNextNavigation,
+    draftKey,
+    editIndex,
+    fetchConfig,
+    form,
+    handleBack,
+    providers,
+    setDraftBaselineSignature,
+    showNotification,
+    t,
+    testModel,
+  ]);
 
-    setProviders(syncedProviders);
-    showNotification(
-      editIndex !== null
-        ? t('notification.openai_provider_updated')
-        : t('notification.openai_provider_added'),
-      'success'
-    );
-    allowNextNavigation();
-    setDraftBaselineSignature(draftKey, buildOpenAISignature(form, testModel));
-    handleBack();
-  } catch (err: unknown) {
-    showNotification(`${t('notification.update_failed')}: ${getErrorMessage(err)}`, 'error');
-  } finally {
-    setSaving(false);
-  }
-}, [
-  allowNextNavigation,
-  draftKey,
-  editIndex,
-  fetchConfig,
-  form,
-  handleBack,
-  providers,
-  setDraftBaselineSignature,
-  showNotification,
-  t,
-  testModel,
-]);
-
-return (
-  <Outlet
-    context={{
-      hasIndexParam,
-      editIndex,
-      invalidIndexParam,
-      invalidIndex,
-      disableControls,
-      loading: resolvedLoading,
-      saving,
-      form,
-      setForm,
-      testModel,
-      setTestModel,
-      testStatus,
-      setTestStatus,
-      testMessage,
-      setTestMessage,
-      keyTestStatuses,
-      setDraftKeyTestStatus: handleSetDraftKeyTestStatus,
-      resetDraftKeyTestStatuses: handleResetDraftKeyTestStatuses,
-      availableModels,
-      handleBack,
-      handleSave,
-      mergeDiscoveredModels,
-    } satisfies OpenAIEditOutletContext}
-  />
-);
+  return (
+    <Outlet
+      context={{
+        hasIndexParam,
+        editIndex,
+        invalidIndexParam,
+        invalidIndex,
+        disableControls,
+        loading: resolvedLoading,
+        saving,
+        form,
+        setForm,
+        testModel,
+        setTestModel,
+        testStatus,
+        setTestStatus,
+        testMessage,
+        setTestMessage,
+        keyTestStatuses,
+        setDraftKeyTestStatus: handleSetDraftKeyTestStatus,
+        resetDraftKeyTestStatuses: handleResetDraftKeyTestStatuses,
+        availableModels,
+        handleBack,
+        handleSave,
+        mergeDiscoveredModels,
+      } satisfies OpenAIEditOutletContext}
+    />
+  );
 }

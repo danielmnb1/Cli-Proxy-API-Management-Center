@@ -1,12 +1,12 @@
 /**
- * 日志相关类型
- * 基于原项目 src/modules/logs.js
+ * Tipos relacionados con los registros (logs)
+ * Basado en el proyecto original src/modules/logs.js
  */
 
-// 日志级别
+// Niveles de registro
 export type LogLevel = 'info' | 'warn' | 'error' | 'debug';
 
-// 日志条目
+// Entrada de registro
 export interface LogEntry {
   timestamp: string;
   level: LogLevel;
@@ -14,7 +14,7 @@ export interface LogEntry {
   details?: unknown;
 }
 
-// 日志筛选
+// Filtro de registros
 export interface LogFilter {
   level?: LogLevel;
   searchQuery: string;

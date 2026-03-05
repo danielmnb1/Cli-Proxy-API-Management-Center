@@ -13,7 +13,7 @@ import type { ApiError } from '@/types';
 import styles from './LoginPage.module.scss';
 
 /**
- * 将 API 错误转换为本地化的用户友好消息
+ * Convierte los errores de la API en mensajes localizados amigables para el usuario
  */
 type RedirectState = { from?: { pathname?: string } };
 
@@ -30,7 +30,7 @@ function getLocalizedErrorMessage(error: unknown, t: (key: string) => string): s
           ? error
           : '';
 
-  // 根据 HTTP 状态码判断
+  // Determinar según el código de estado HTTP
   if (status === 401) {
     return t('login.error_unauthorized');
   }
@@ -44,7 +44,7 @@ function getLocalizedErrorMessage(error: unknown, t: (key: string) => string): s
     return t('login.error_server');
   }
 
-  // 根据 axios 错误码判断
+  // Determinar según el código de error de axios
   if (code === 'ECONNABORTED' || message.toLowerCase().includes('timeout')) {
     return t('login.error_timeout');
   }
@@ -55,12 +55,12 @@ function getLocalizedErrorMessage(error: unknown, t: (key: string) => string): s
     return t('login.error_ssl');
   }
 
-  // 检查 CORS 错误
+  // Comprobar errores de CORS
   if (message.toLowerCase().includes('cors') || message.toLowerCase().includes('cross-origin')) {
     return t('login.error_cors');
   }
 
-  // 默认错误消息
+  // Mensaje de error por defecto
   return t('login.error_invalid');
 }
 
@@ -106,7 +106,7 @@ export function LoginPage() {
         const autoLoggedIn = await restoreSession();
         if (autoLoggedIn) {
           setAutoLoginSuccess(true);
-          // 延迟跳转，让用户看到成功动画
+          // Retrasar el redireccionamiento para que el usuario vea la animación de éxito
           setTimeout(() => {
             const redirect = (location.state as RedirectState | null)?.from?.pathname || '/';
             navigate(redirect, { replace: true });
@@ -168,12 +168,12 @@ export function LoginPage() {
     return <Navigate to={redirect} replace />;
   }
 
-  // 显示启动动画（自动登录中或自动登录成功）
+  // Mostrar animación de inicio (en proceso de inicio de sesión automático o éxito)
   const showSplash = autoLoading || autoLoginSuccess;
 
   return (
     <div className={styles.container}>
-      {/* 左侧品牌展示区 */}
+      {/* Área de visualización de marca izquierda */}
       <div className={styles.brandPanel}>
         <div className={styles.brandContent}>
           <span className={styles.brandWord}>CLI</span>
@@ -182,10 +182,10 @@ export function LoginPage() {
         </div>
       </div>
 
-      {/* 右侧功能交互区 */}
+      {/* Área de interacción de funciones derecha */}
       <div className={styles.formPanel}>
         {showSplash ? (
-          /* 启动动画 */
+          /* Animación de inicio */
           <div className={styles.splashContent}>
             <img src={INLINE_LOGO_JPEG} alt="CPAMC" className={styles.splashLogo} />
             <h1 className={styles.splashTitle}>{t('splash.title')}</h1>
@@ -195,12 +195,12 @@ export function LoginPage() {
             </div>
           </div>
         ) : (
-          /* 登录表单 */
+          /* Formulario de inicio de sesión */
           <div className={styles.formContent}>
             {/* Logo */}
             <img src={INLINE_LOGO_JPEG} alt="Logo" className={styles.logo} />
 
-            {/* 登录表单卡片 */}
+            {/* Tarjeta del formulario de inicio de sesión */}
             <div className={styles.loginCard}>
               <div className={styles.loginHeader}>
                 <div className={styles.titleRow}>
@@ -263,13 +263,13 @@ export function LoginPage() {
                     onClick={() => setShowKey((prev) => !prev)}
                     aria-label={
                       showKey
-                        ? t('login.hide_key', { defaultValue: '隐藏密钥' })
-                        : t('login.show_key', { defaultValue: '显示密钥' })
+                        ? t('login.hide_key', { defaultValue: 'Ocultar clave' })
+                        : t('login.show_key', { defaultValue: 'Mostrar clave' })
                     }
                     title={
                       showKey
-                        ? t('login.hide_key', { defaultValue: '隐藏密钥' })
-                        : t('login.show_key', { defaultValue: '显示密钥' })
+                        ? t('login.hide_key', { defaultValue: 'Ocultar clave' })
+                        : t('login.show_key', { defaultValue: 'Mostrar clave' })
                     }
                   >
                     {showKey ? <IconEyeOff size={16} /> : <IconEye size={16} />}

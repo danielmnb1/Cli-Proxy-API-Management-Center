@@ -1,6 +1,6 @@
 /**
- * 语言状态管理
- * 从原项目 src/modules/language.js 迁移
+ * Gestión del estado del idioma
+ * Migrado desde src/modules/language.js del proyecto original
  */
 
 import { create } from 'zustand';
@@ -25,7 +25,7 @@ export const useLanguageStore = create<LanguageState>()(
         if (!isSupportedLanguage(language)) {
           return;
         }
-        // 切换 i18next 语言
+        // Cambiar el idioma de i18next
         i18n.changeLanguage(language);
         set({ language });
       },

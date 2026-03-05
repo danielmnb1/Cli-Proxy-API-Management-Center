@@ -65,7 +65,7 @@
   margin-bottom: $spacing-md;
 }
 
-// 筛选区域
+// Área de filtrado
 .filterSection {
   display: flex;
   flex-direction: column;
@@ -125,7 +125,7 @@
   flex-wrap: wrap;
   align-items: flex-end;
 
-  // 修复 Input 组件在 filterItem 中的嵌套样式
+  // Corregir estilos anidados del componente Input en filterItem
   :global(.form-group) {
     margin: 0;
   }
@@ -148,14 +148,14 @@
     white-space: nowrap;
   }
 
-  // 搜索输入框需要更宽以显示完整的 placeholder
+  // El cuadro de búsqueda necesita ser más ancho para mostrar el marcador de posición completo
   &:first-child {
     min-width: 220px;
     flex: 1;
     max-width: 320px;
   }
 
-  // 其他 filterItem 保持较小的宽度
+  // Otros filterItem mantienen un ancho menor
   &:not(:first-child) {
     min-width: auto;
   }
@@ -178,7 +178,7 @@
   }
 }
 
-// 卡片网格
+// Cuadrícula de tarjetas
 .fileGrid {
   display: grid;
   gap: $spacing-md;
@@ -481,7 +481,7 @@
   text-transform: capitalize;
 }
 
-// 单个认证文件卡片
+// Tarjeta de archivo de autenticación individual
 .fileCard {
   background-color: var(--bg-primary);
   border: 1px solid var(--border-color);
@@ -654,7 +654,7 @@
   border-color: var(--failure-badge-border);
 }
 
-// 状态监测栏
+// Barra de monitoreo de estado
 .statusBar {
   display: flex;
   align-items: center;
@@ -930,7 +930,7 @@
   align-items: center;
 }
 
-// 分页
+// Paginación
 .pagination {
   display: flex;
   justify-content: center;
@@ -1009,7 +1009,7 @@
   border-radius: $radius-md;
 }
 
-// OAuth 模型禁用
+// Desactivación de modelos OAuth
 .excludedList {
   display: flex;
   flex-direction: column;
@@ -1057,7 +1057,7 @@
   flex-shrink: 0;
 }
 
-// OAuth 模型禁用表单：提供商快捷标签
+// Formulario de desactivación de modelos OAuth: etiquetas rápidas de proveedores
 .providerField {
   display: flex;
   flex-direction: column;
@@ -1111,7 +1111,7 @@
   }
 }
 
-// OAuth 模型别名 - 映射概览
+// Alias de modelos OAuth - Resumen de mapeo
 .aliasChartSection {
   margin-bottom: $spacing-lg;
   padding-bottom: $spacing-lg;
@@ -1154,7 +1154,7 @@
   border: 1px solid var(--border-color);
 }
 
-// OAuth 模型映射表单
+// Formulario de mapeo de modelos OAuth
 .mappingRow {
   display: grid;
   grid-template-columns: 1fr auto 1fr auto auto;
@@ -1180,7 +1180,7 @@
   align-items: center;
 }
 
-// 详情弹窗
+// Ventana emergente de detalles
 .detailContent {
   max-height: 400px;
   overflow: auto;
@@ -1199,7 +1199,7 @@
   margin: 0;
 }
 
-// 表单
+// Formulario
 .formGroup {
   display: flex;
   flex-direction: column;
@@ -1242,7 +1242,7 @@
   padding: $spacing-lg;
 }
 
-// 模型列表弹窗
+// Ventana emergente de lista de modelos
 .modelsList {
   display: flex;
   flex-direction: column;
@@ -1320,7 +1320,7 @@
   flex-shrink: 0;
 }
 
-// 排除模型勾选列表
+// Lista de verificación de modelos excluidos
 .excludedCheckList {
   display: flex;
   flex-direction: column;

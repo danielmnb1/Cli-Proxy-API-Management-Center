@@ -1,5 +1,5 @@
 /**
- * Amp CLI Integration (ampcode) 相关 API
+ * API relacionada con la integración de Amp CLI (ampcode)
  */
 
 import { apiClient } from './client';

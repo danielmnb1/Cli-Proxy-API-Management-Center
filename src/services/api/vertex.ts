@@ -1,5 +1,5 @@
 /**
- * Vertex credential import API
+ * API para la importación de credenciales de Vertex
  */
 
 import { apiClient } from './client';

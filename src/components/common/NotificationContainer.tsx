@@ -7,42 +7,42 @@ interface AnimatedNotification extends Notification {
   isExiting?: boolean;
 }
 
-const ANIMATION_DURATION = 300; // ms
+const ANIMATION_DURATION = 300; // ms (duración de la animación)
 
 export function NotificationContainer() {
   const { notifications, removeNotification } = useNotificationStore();
   const [animatedNotifications, setAnimatedNotifications] = useState<AnimatedNotification[]>([]);
   const prevNotificationsRef = useRef<Notification[]>([]);
 
-  // Track notifications and manage animation states
+  // Rastrear notificaciones y gestionar estados de animación
   useEffect(() => {
     const prevNotifications = prevNotificationsRef.current;
     const prevIds = new Set(prevNotifications.map((n) => n.id));
     const currentIds = new Set(notifications.map((n) => n.id));
 
-    // Find new notifications (for enter animation)
+    // Encontrar nuevas notificaciones (para animación de entrada)
     const newNotifications = notifications.filter((n) => !prevIds.has(n.id));
 
-    // Find removed notifications (for exit animation)
+    // Encontrar notificaciones eliminadas (para animación de salida)
     const removedIds = new Set(
       prevNotifications.filter((n) => !currentIds.has(n.id)).map((n) => n.id)
     );
 
     setAnimatedNotifications((prev) => {
-      // Mark removed notifications as exiting
+      // Marcar las notificaciones eliminadas como salientes (exiting)
       let updated = prev.map((n) =>
         removedIds.has(n.id) ? { ...n, isExiting: true } : n
       );
 
-      // Add new notifications
+      // Añadir nuevas notificaciones
       newNotifications.forEach((n) => {
         if (!updated.find((an) => an.id === n.id)) {
           updated.push({ ...n, isExiting: false });
         }
       });
 
-      // Remove notifications that are not in current and not exiting
-      // (they've already completed their exit animation)
+      // Eliminar las notificaciones que no están en las actuales y no están saliendo
+      // (ya han completado su animación de salida)
       updated = updated.filter(
         (n) => currentIds.has(n.id) || n.isExiting
       );
@@ -50,7 +50,7 @@ export function NotificationContainer() {
       return updated;
     });
 
-    // Clean up exited notifications after animation
+    // Limpiar las notificaciones que ya salieron después de la animación
     if (removedIds.size > 0) {
       setTimeout(() => {
         setAnimatedNotifications((prev) =>
@@ -63,12 +63,12 @@ export function NotificationContainer() {
   }, [notifications]);
 
   const handleClose = (id: string) => {
-    // Start exit animation
+    // Iniciar animación de salida
     setAnimatedNotifications((prev) =>
       prev.map((n) => (n.id === id ? { ...n, isExiting: true } : n))
     );
 
-    // Actually remove after animation
+    // Eliminar realmente después de la animación
     setTimeout(() => {
       removeNotification(id);
     }, ANIMATION_DURATION);
@@ -84,7 +84,7 @@ export function NotificationContainer() {
           className={`notification ${notification.type} ${notification.isExiting ? 'exiting' : 'entering'}`}
         >
           <div className="message">{notification.message}</div>
-          <button className="close-btn" onClick={() => handleClose(notification.id)} aria-label="Close">
+          <button className="close-btn" onClick={() => handleClose(notification.id)} aria-label="Cerrar">
             <IconX size={16} />
           </button>
         </div>

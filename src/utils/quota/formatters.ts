@@ -1,5 +1,5 @@
 /**
- * Formatting functions for quota display.
+ * Funciones de formato para la visualización de cuotas.
  */
 
 import type { TFunction } from 'i18next';

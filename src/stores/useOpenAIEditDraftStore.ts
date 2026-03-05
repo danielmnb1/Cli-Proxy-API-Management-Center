@@ -1,11 +1,11 @@
 /**
- * OpenAI provider editor draft state.
+ * Estado del borrador del editor del proveedor OpenAI.
  *
- * Why this exists:
- * - The app uses `PageTransition` with iOS-style stacked routes for `/ai-providers/*`.
- * - Entering `/ai-providers/openai/.../models` creates a new route layer, so component-local state
- *   inside the OpenAI edit layout is not shared between the edit screen and the model picker screen.
- * - This store makes the OpenAI edit draft shared across route layers keyed by provider index/new.
+ * Por qué existe:
+ * - La aplicación usa `PageTransition` con rutas apiladas estilo iOS para `/ai-providers/*`.
+ * - Entrar en `/ai-providers/openai/.../models` crea una nueva capa de ruta, por lo que el estado local del componente
+ *   dentro del diseño de edición de OpenAI no se comparte entre la pantalla de edición y la pantalla del selector de modelos.
+ * - Este almacén permite que el borrador de edición de OpenAI se comparta entre capas de ruta identificadas por el índice del proveedor/nuevo.
  */
 
 import type { SetStateAction } from 'react';

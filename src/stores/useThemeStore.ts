@@ -1,6 +1,6 @@
 /**
- * 主题状态管理
- * 从原项目 src/modules/theme.js 迁移
+ * Gestión del estado del tema
+ * Migrado desde src/modules/theme.js del proyecto original
  */
 
 import { create } from 'zustand';
@@ -56,12 +56,12 @@ export const useThemeStore = create<ThemeState>()(
       initializeTheme: () => {
         const { theme, setTheme } = get();
 
-        // 应用已保存的主题
+        // Aplicar el tema guardado
         setTheme(theme);
 
-        // 监听系统主题变化（仅在 auto 模式下生效）
+        // Escuchar cambios en el tema del sistema (solo efectivo en modo auto)
         if (!window.matchMedia) {
-          return () => {};
+          return () => { };
         }
 
         const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');

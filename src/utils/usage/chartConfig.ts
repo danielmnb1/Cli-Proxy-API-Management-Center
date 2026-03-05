@@ -1,12 +1,12 @@
 /**
- * Chart.js configuration utilities for usage statistics
- * Extracted from UsagePage.tsx for reusability
+ * Utilidades de configuración de Chart.js para estadísticas de uso
+ * Extraído de UsagePage.tsx para reutilización
  */
 
 import type { ChartOptions } from 'chart.js';
 
 /**
- * Static sparkline chart options (no dependencies on theme/mobile)
+ * Opciones de gráficos sparkline estáticos (sin dependencias de tema/móvil)
  */
 export const sparklineOptions: ChartOptions<'line'> = {
   responsive: true,
@@ -24,7 +24,7 @@ export interface ChartConfigOptions {
 }
 
 /**
- * Build chart options with theme and responsive awareness
+ * Construye opciones de gráficos considerando el tema y la responsividad
  */
 export function buildChartOptions({
   period,
@@ -132,7 +132,7 @@ export function buildChartOptions({
 }
 
 /**
- * Calculate minimum chart width for hourly data on mobile devices
+ * Calcula el ancho mínimo del gráfico para datos por hora en dispositivos móviles
  */
 export function getHourChartMinWidth(labelCount: number, isMobile: boolean): string | undefined {
   if (!isMobile || labelCount <= 0) return undefined;

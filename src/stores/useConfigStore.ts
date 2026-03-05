@@ -1,6 +1,6 @@
 /**
- * 配置状态管理
- * 从原项目 src/core/config-service.js 迁移
+ * Gestión del estado de configuración
+ * Migrado desde src/core/config-service.js del proyecto original
  */
 
 import { create } from 'zustand';
@@ -20,7 +20,7 @@ interface ConfigState {
   loading: boolean;
   error: string | null;
 
-  // 操作
+  // Operaciones
   fetchConfig: {
     (section?: undefined, forceRefresh?: boolean): Promise<Config>;
     (section: RawConfigSection, forceRefresh?: boolean): Promise<unknown>;
@@ -111,7 +111,7 @@ export const useConfigStore = create<ConfigState>((set, get) => ({
   fetchConfig: (async (section?: RawConfigSection, forceRefresh: boolean = false) => {
     const { cache, isCacheValid } = get();
 
-    // 检查缓存
+    // Verificar caché
     const cacheKey = section || '__full__';
     if (!forceRefresh && isCacheValid(section)) {
       const cached = cache.get(cacheKey);
@@ -120,7 +120,7 @@ export const useConfigStore = create<ConfigState>((set, get) => ({
       }
     }
 
-    // section 缓存未命中但 full 缓存可用时，直接复用已获取到的配置，避免重复 /config 请求
+    // Si falla el caché de la sección pero el caché completo está disponible, reutilizar la configuración obtenida para evitar peticiones /config repetidas
     if (!forceRefresh && section && isCacheValid()) {
       const fullCached = cache.get('__full__');
       if (fullCached?.data) {
@@ -128,13 +128,13 @@ export const useConfigStore = create<ConfigState>((set, get) => ({
       }
     }
 
-    // 同一时刻合并多个 /config 请求（如 StrictMode 或多个页面同时触发）
+    // Fusionar múltiples peticiones /config al mismo tiempo (ej: StrictMode o múltiples páginas disparadas simultáneamente)
     if (inFlightConfigRequest) {
       const data = await inFlightConfigRequest.promise;
       return section ? extractSectionValue(data, section) : data;
     }
 
-    // 获取新数据
+    // Obtener datos nuevos
     set({ loading: true, error: null });
 
     const requestId = (configRequestToken += 1);
@@ -144,12 +144,12 @@ export const useConfigStore = create<ConfigState>((set, get) => ({
       const data = await requestPromise;
       const now = Date.now();
 
-      // 如果在请求过程中连接已被切换/登出，则忽略旧请求的结果，避免覆盖新会话的状态
+      // Si la conexión se cambió o se cerró sesión durante la petición, ignorar el resultado de la petición antigua para evitar sobrescribir el estado de la nueva sesión
       if (requestId !== configRequestToken) {
         return section ? extractSectionValue(data, section) : data;
       }
 
-      // 更新缓存
+      // Actualizar caché
       const newCache = new Map(cache);
       newCache.set('__full__', { data, timestamp: now });
       SECTION_KEYS.forEach((key) => {
@@ -168,10 +168,10 @@ export const useConfigStore = create<ConfigState>((set, get) => ({
       return section ? extractSectionValue(data, section) : data;
     } catch (error: unknown) {
       const message =
-        error instanceof Error ? error.message : typeof error === 'string' ? error : 'Failed to fetch config';
+        error instanceof Error ? error.message : typeof error === 'string' ? error : 'Fallo al obtener la configuración';
       if (requestId === configRequestToken) {
         set({
-          error: message || 'Failed to fetch config',
+          error: message || 'Fallo al obtener la configuración',
           loading: false
         });
       }
@@ -254,7 +254,7 @@ export const useConfigStore = create<ConfigState>((set, get) => ({
       return { config: nextConfig };
     });
 
-    // 清除该 section 的缓存
+    // Limpiar el caché de esta sección
     get().clearCache(section);
   },
 
@@ -264,7 +264,7 @@ export const useConfigStore = create<ConfigState>((set, get) => ({
 
     if (section) {
       newCache.delete(section);
-      // 同时清除完整配置缓存
+      // También borra la caché de configuración completa
       newCache.delete('__full__');
 
       set({ cache: newCache });
@@ -273,7 +273,7 @@ export const useConfigStore = create<ConfigState>((set, get) => ({
       newCache.clear();
     }
 
-    // 清除全部缓存一般代表“切换连接/登出/全量刷新”，需要让 in-flight 的旧请求失效
+    // Limpiar todo el caché generalmente representa "cambiar conexión/cerrar sesión/refresco total", requiere invalidar peticiones antiguas en vuelo
     configRequestToken += 1;
     inFlightConfigRequest = null;
 

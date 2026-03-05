@@ -101,7 +101,7 @@
   box-shadow: none;
 }
 
-// 暗色主题适配
+// Adaptación para tema oscuro
 :global([data-theme='dark']) {
   .navList {
     background: color-mix(in srgb, var(--bg-primary) 82%, transparent);
@@ -114,7 +114,7 @@
   }
 }
 
-// 小屏幕进一步收紧尺寸
+// Ajustar aún más el tamaño en pantallas pequeñas
 @media (max-width: 1200px) {
   .navContainer {
     max-width: calc(100vw - 16px);

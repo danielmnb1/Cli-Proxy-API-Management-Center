@@ -1,5 +1,5 @@
 /**
- * 媒体查询 Hook
+ * Hook de Media Query
  */
 
 import { useState, useEffect } from 'react';
@@ -16,7 +16,7 @@ export function useMediaQuery(query: string): boolean {
       setMatches(event.matches);
     };
 
-    // Set initial value via listener to avoid direct setState in effect
+    // Establecer el valor inicial a través del listener para evitar setState directo en el effect
     listener({ matches: media.matches } as MediaQueryListEvent);
 
     media.addEventListener('change', listener);

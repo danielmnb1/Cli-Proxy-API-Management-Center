@@ -1,5 +1,5 @@
 /**
- * 类型定义统一导出
+ * Exportación unificada de definiciones de tipos
  */
 
 export * from './common';

@@ -1,5 +1,5 @@
 /**
- * 版本相关 API
+ * API relacionada con la versión
  */
 
 import { apiClient } from './client';

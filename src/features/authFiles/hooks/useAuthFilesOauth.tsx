@@ -136,7 +136,7 @@ export function useAuthFilesOauth(options: UseAuthFilesOauthOptions): UseAuthFil
         }
         return;
       }
-      // 静默失败
+      // Fallo silencioso
     }
   }, [showNotification, t]);
 
@@ -161,7 +161,7 @@ export function useAuthFilesOauth(options: UseAuthFilesOauthOptions): UseAuthFil
         }
         return;
       }
-      // 静默失败
+      // Fallo silencioso
     }
   }, [showNotification, t]);
 

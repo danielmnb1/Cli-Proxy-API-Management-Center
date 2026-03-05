@@ -78,8 +78,8 @@ function setStringInDoc(doc: YamlDocument, path: YamlPath, value: unknown): void
     doc.setIn(path, safe);
     return;
   }
-  // Preserve existing empty-string keys to avoid dropping template blocks/comments.
-  // Only keep the key when it already exists in the YAML.
+  // Conservar las claves de cadena vacía existentes para evitar eliminar bloques de plantillas/comentarios.
+  // Solo mantener la clave cuando ya existe en el YAML.
   if (docHas(doc, path)) {
     doc.setIn(path, '');
   }
@@ -154,29 +154,29 @@ function parsePayloadRules(rules: unknown): PayloadRule[] {
     const modelsRaw = record.models;
     const models = Array.isArray(modelsRaw)
       ? modelsRaw.map((model, modelIndex) => {
-          const modelRecord = asRecord(model);
-          const nameRaw =
-            typeof model === 'string' ? model : (modelRecord?.name ?? modelRecord?.id ?? '');
-          const name = typeof nameRaw === 'string' ? nameRaw : String(nameRaw ?? '');
-          return {
-            id: `model-${index}-${modelIndex}`,
-            name,
-            protocol: parsePayloadProtocol(modelRecord?.protocol),
-          };
-        })
+        const modelRecord = asRecord(model);
+        const nameRaw =
+          typeof model === 'string' ? model : (modelRecord?.name ?? modelRecord?.id ?? '');
+        const name = typeof nameRaw === 'string' ? nameRaw : String(nameRaw ?? '');
+        return {
+          id: `model-${index}-${modelIndex}`,
+          name,
+          protocol: parsePayloadProtocol(modelRecord?.protocol),
+        };
+      })
       : [];
 
     const paramsRecord = asRecord(record.params);
     const params = paramsRecord
       ? Object.entries(paramsRecord).map(([path, value], pIndex) => {
-          const parsedValue = parsePayloadParamValue(value);
-          return {
-            id: `param-${index}-${pIndex}`,
-            path,
-            valueType: parsedValue.valueType,
-            value: parsedValue.value,
-          };
-        })
+        const parsedValue = parsePayloadParamValue(value);
+        return {
+          id: `param-${index}-${pIndex}`,
+          path,
+          valueType: parsedValue.valueType,
+          value: parsedValue.value,
+        };
+      })
       : [];
 
     return { id: `payload-rule-${index}`, models, params };
@@ -192,16 +192,16 @@ function parsePayloadFilterRules(rules: unknown): PayloadFilterRule[] {
     const modelsRaw = record.models;
     const models = Array.isArray(modelsRaw)
       ? modelsRaw.map((model, modelIndex) => {
-          const modelRecord = asRecord(model);
-          const nameRaw =
-            typeof model === 'string' ? model : (modelRecord?.name ?? modelRecord?.id ?? '');
-          const name = typeof nameRaw === 'string' ? nameRaw : String(nameRaw ?? '');
-          return {
-            id: `filter-model-${index}-${modelIndex}`,
-            name,
-            protocol: parsePayloadProtocol(modelRecord?.protocol),
-          };
-        })
+        const modelRecord = asRecord(model);
+        const nameRaw =
+          typeof model === 'string' ? model : (modelRecord?.name ?? modelRecord?.id ?? '');
+        const name = typeof nameRaw === 'string' ? nameRaw : String(nameRaw ?? '');
+        return {
+          id: `filter-model-${index}-${modelIndex}`,
+          name,
+          protocol: parsePayloadProtocol(modelRecord?.protocol),
+        };
+      })
       : [];
 
     const paramsRaw = record.params;
@@ -536,7 +536,7 @@ export const VISUAL_CONFIG_PROTOCOL_OPTIONS = [
   {
     value: '',
     labelKey: 'config_management.visual.payload_rules.provider_default',
-    defaultLabel: 'Default',
+    defaultLabel: 'Predeterminado',
   },
   {
     value: 'openai',

@@ -332,7 +332,7 @@
   font-style: italic;
 }
 
-// API List (80%比例)
+// Lista de API (proporción 80%)
 .apiSortBar {
   display: flex;
   flex-wrap: wrap;
@@ -504,7 +504,7 @@
   overscroll-behavior: contain;
 }
 
-// Table (80%比例)
+// Tabla (proporción 80%)
 .tableWrapper {
   overflow-x: auto;
 }
@@ -514,7 +514,8 @@
   border-collapse: collapse;
   font-size: 12px;
 
-  th, td {
+  th,
+  td {
     padding: 10px 12px;
     text-align: left;
     border-bottom: 1px solid var(--border-color);
@@ -595,7 +596,7 @@
   white-space: nowrap;
 }
 
-// Pricing Section (80%比例)
+// Sección de Precios (proporción 80%)
 .pricingSection {
   display: flex;
   flex-direction: column;
@@ -634,12 +635,12 @@
     font-weight: 500;
   }
 
-  // 确保 Input 组件的 form-group 包装器不影响布局
+  // Asegurar que el envoltorio form-group del componente Input no afecte el diseño
   :global(.form-group) {
     margin: 0;
 
-    > label {
-      display: none; // 隐藏 Input 自带的 label，使用外层的
+    >label {
+      display: none; // Ocultar la etiqueta propia de Input, usar la exterior
     }
   }
 
@@ -723,7 +724,7 @@
   gap: 12px;
 }
 
-// Chart Section (80%比例)
+// Sección de Gráfico (proporción 80%)
 .chartSection {
   display: flex;
   flex-direction: column;
@@ -814,7 +815,7 @@
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
 
-  // Chart.js 默认会设置 canvas 的 touch-action: none，导致移动端无法横向滚动
+  // Chart.js establece touch-action: none en canvas por defecto, lo que impide el desplazamiento horizontal en móviles
   :global(canvas) {
     touch-action: pan-x pan-y !important;
   }
@@ -836,7 +837,7 @@
   gap: 20px;
   grid-template-columns: minmax(0, 1fr);
 
-  > * {
+  >* {
     min-width: 0;
   }
 
@@ -850,7 +851,7 @@
   gap: 20px;
   grid-template-columns: minmax(0, 1fr);
 
-  > * {
+  >* {
     min-width: 0;
   }
 

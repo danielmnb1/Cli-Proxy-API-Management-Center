@@ -1,6 +1,6 @@
 /**
- * 认证状态管理
- * 从原项目 src/modules/login.js 和 src/core/connection.js 迁移
+ * Gestión del estado de autenticación
+ * Migrado desde src/modules/login.js y src/core/connection.js del proyecto original
  */
 
 import { create } from 'zustand';
@@ -16,7 +16,7 @@ interface AuthStoreState extends AuthState {
   connectionStatus: ConnectionStatus;
   connectionError: string | null;
 
-  // 操作
+  // Operaciones
   login: (credentials: LoginCredentials) => Promise<void>;
   logout: () => void;
   checkAuth: () => Promise<boolean>;
@@ -30,7 +30,7 @@ let restoreSessionPromise: Promise<boolean> | null = null;
 export const useAuthStore = create<AuthStoreState>()(
   persist(
     (set, get) => ({
-      // 初始状态
+      // Estado inicial
       isAuthenticated: false,
       apiBase: '',
       managementKey: '',
@@ -40,7 +40,7 @@ export const useAuthStore = create<AuthStoreState>()(
       connectionStatus: 'disconnected',
       connectionError: null,
 
-      // 恢复会话并自动登录
+      // Restaurar sesión e iniciar sesión automáticamente
       restoreSession: () => {
         if (restoreSessionPromise) return restoreSessionPromise;
 
@@ -85,7 +85,7 @@ export const useAuthStore = create<AuthStoreState>()(
         return restoreSessionPromise;
       },
 
-      // 登录
+      // Iniciar sesión
       login: async (credentials) => {
         const apiBase = normalizeApiBase(credentials.apiBase);
         const managementKey = credentials.managementKey.trim();
@@ -94,16 +94,16 @@ export const useAuthStore = create<AuthStoreState>()(
         try {
           set({ connectionStatus: 'connecting' });
 
-          // 配置 API 客户端
+          // Configurar cliente API
           apiClient.setConfig({
             apiBase,
             managementKey
           });
 
-          // 测试连接 - 获取配置
+          // Probar conexión - obtener configuración
           await useConfigStore.getState().fetchConfig(undefined, true);
 
-          // 登录成功
+          // Inicio de sesión exitoso
           set({
             isAuthenticated: true,
             apiBase,
@@ -123,16 +123,16 @@ export const useAuthStore = create<AuthStoreState>()(
               ? error.message
               : typeof error === 'string'
                 ? error
-                : 'Connection failed';
+                : 'Fallo en la conexión';
           set({
             connectionStatus: 'error',
-            connectionError: message || 'Connection failed'
+            connectionError: message || 'Fallo en la conexión'
           });
           throw error;
         }
       },
 
-      // 登出
+      // Cerrar sesión
       logout: () => {
         restoreSessionPromise = null;
         useConfigStore.getState().clearCache();
@@ -148,7 +148,7 @@ export const useAuthStore = create<AuthStoreState>()(
         localStorage.removeItem('isLoggedIn');
       },
 
-      // 检查认证状态
+      // Verificar estado de autenticación
       checkAuth: async () => {
         const { managementKey, apiBase } = get();
 
@@ -157,10 +157,10 @@ export const useAuthStore = create<AuthStoreState>()(
         }
 
         try {
-          // 重新配置客户端
+          // Reconfigurar cliente
           apiClient.setConfig({ apiBase, managementKey });
 
-          // 验证连接
+          // Validar conexión
           await useConfigStore.getState().fetchConfig();
 
           set({
@@ -178,12 +178,12 @@ export const useAuthStore = create<AuthStoreState>()(
         }
       },
 
-      // 更新服务器版本
+      // Actualizar versión del servidor
       updateServerVersion: (version, buildDate) => {
         set({ serverVersion: version || null, serverBuildDate: buildDate || null });
       },
 
-      // 更新连接状态
+      // Actualizar estado de conexión
       updateConnectionStatus: (status, error = null) => {
         set({
           connectionStatus: status,
@@ -216,7 +216,7 @@ export const useAuthStore = create<AuthStoreState>()(
   )
 );
 
-// 监听全局未授权事件
+// Escuchar eventos globales de no autorizado (401)
 if (typeof window !== 'undefined') {
   window.addEventListener('unauthorized', () => {
     useAuthStore.getState().logout();

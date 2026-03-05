@@ -54,13 +54,13 @@ export const useUsageStatsStore = create<UsageStatsState>((set, get) => ({
     const state = get();
     const scopeChanged = state.scopeKey !== scopeKey;
 
-    // 先复用同源 in-flight 请求，避免多个页面同时发起重复 /usage。
+    // Primero reutilizar peticiones en vuelo del mismo origen, para evitar que múltiples páginas inicien peticiones /usage repetidas.
     if (inFlightUsageRequest && inFlightUsageRequest.scopeKey === scopeKey) {
       await inFlightUsageRequest.promise;
       return;
     }
 
-    // 连接目标变化时，旧请求结果必须失效。
+    // Cuando el objetivo de conexión cambia, el resultado de la petición antigua debe invalidarse.
     if (inFlightUsageRequest && inFlightUsageRequest.scopeKey !== scopeKey) {
       usageRequestToken += 1;
       inFlightUsageRequest = null;

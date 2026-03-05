@@ -23,9 +23,9 @@ export function ConfirmationModal() {
       await onConfirm();
       hideConfirmation();
     } catch (error) {
-      console.error('Confirmation action failed:', error);
-      // Optional: show error notification here if needed, 
-      // but usually the calling component handles specific errors.
+      console.error('Falló la acción de confirmación:', error);
+      // Opcional: mostrar notificación de error aquí si es necesario, 
+      // pero generalmente el componente llamador maneja los errores específicos.
     } finally {
       setConfirmationLoading(false);
     }
@@ -52,9 +52,9 @@ export function ConfirmationModal() {
         <Button variant="ghost" onClick={handleCancel} disabled={isLoading}>
           {cancelText || t('common.cancel')}
         </Button>
-        <Button 
-          variant={variant} 
-          onClick={handleConfirm} 
+        <Button
+          variant={variant}
+          onClick={handleConfirm}
           loading={isLoading}
         >
           {confirmText || t('common.confirm')}

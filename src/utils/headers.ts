@@ -1,5 +1,5 @@
 /**
- * 自定义请求头处理工具
+ * Utilidades para el manejo de encabezados personalizados
  */
 
 export interface HeaderEntry {

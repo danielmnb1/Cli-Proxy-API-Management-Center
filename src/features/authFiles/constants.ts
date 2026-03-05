@@ -24,7 +24,7 @@ export const INTEGER_STRING_PATTERN = /^[+-]?\d+$/;
 export const TRUTHY_TEXT_VALUES = new Set(['true', '1', 'yes', 'y', 'on']);
 export const FALSY_TEXT_VALUES = new Set(['false', '0', 'no', 'n', 'off']);
 
-// 标签类型颜色配置（对齐重构前 styles.css 的 file-type-badge 颜色）
+// Configuración de colores para los tipos de etiquetas (alineada con los colores de file-type-badge en styles.css antes de la refactorización)
 export const TYPE_COLORS: Record<string, TypeColorSet> = {
   qwen: {
     light: { bg: '#e8f5e9', text: '#2e7d32' },
@@ -155,16 +155,16 @@ export function resolveAuthFileStats(file: AuthFileItem, stats: KeyStats): KeySt
   const defaultStats: KeyStatBucket = { success: 0, failure: 0 };
   const rawFileName = file?.name || '';
 
-  // 兼容 auth_index 和 authIndex 两种字段名（API 返回的是 auth_index）
+  // Compatible con los nombres de campo auth_index y authIndex (la API devuelve auth_index)
   const rawAuthIndex = file['auth_index'] ?? file.authIndex;
   const authIndexKey = normalizeAuthIndex(rawAuthIndex);
 
-  // 尝试根据 authIndex 匹配
+  // Intentar coincidir en función de authIndex
   if (authIndexKey && stats.byAuthIndex?.[authIndexKey]) {
     return stats.byAuthIndex[authIndexKey];
   }
 
-  // 尝试根据 source (文件名) 匹配
+  // Intentar coincidir en función de source (nombre de archivo)
   const fileNameId = rawFileName ? normalizeUsageSourceId(rawFileName) : '';
   if (fileNameId && stats.bySource?.[fileNameId]) {
     const fromName = stats.bySource[fileNameId];
@@ -173,7 +173,7 @@ export function resolveAuthFileStats(file: AuthFileItem, stats: KeyStats): KeySt
     }
   }
 
-  // 尝试去掉扩展名后匹配
+  // Intentar coincidir tras eliminar la extensión
   if (rawFileName) {
     const nameWithoutExt = rawFileName.replace(/\.[^/.]+$/, '');
     if (nameWithoutExt && nameWithoutExt !== rawFileName) {
@@ -202,7 +202,7 @@ export const formatModified = (item: AuthFileItem): string => {
   return Number.isNaN(date.getTime()) ? '-' : date.toLocaleString();
 };
 
-// 检查模型是否被 OAuth 排除
+// Comprobar si el modelo está excluido por OAuth
 export const isModelExcluded = (
   modelId: string,
   providerType: string,
@@ -212,7 +212,7 @@ export const isModelExcluded = (
   const excludedModels = excluded[providerKey] || excluded[providerType] || [];
   return excludedModels.some((pattern) => {
     if (pattern.includes('*')) {
-      // 支持通配符匹配：先转义正则特殊字符，再将 * 视为通配符
+      // Soporte para coincidencia por comodines: primero se escapan los caracteres especiales de regex y luego se trata * como comodín
       const regexSafePattern = pattern
         .split('*')
         .map((segment) => segment.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))

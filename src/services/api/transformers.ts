@@ -140,9 +140,9 @@ const normalizeProviderKeyConfig = (item: unknown): ProviderKeyConfig | null => 
   if (models.length) config.models = models;
   const excludedModels = normalizeExcludedModels(
     record?.['excluded-models'] ??
-      record?.excludedModels ??
-      record?.['excluded_models'] ??
-      record?.excluded_models
+    record?.excludedModels ??
+    record?.['excluded_models'] ??
+    record?.excluded_models
   );
   if (excludedModels.length) config.excludedModels = excludedModels;
 
@@ -305,7 +305,7 @@ const normalizeAmpcodeConfig = (payload: unknown): AmpcodeConfig | undefined => 
 };
 
 /**
- * 规范化 /config 返回值
+ * Normalizar el valor de retorno de /config
  */
 export const normalizeConfigResponse = (raw: unknown): Config => {
   const config: Config = { raw: isRecord(raw) ? raw : {} };

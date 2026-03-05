@@ -1,5 +1,5 @@
 /**
- * 配置相关 API
+ * API relacionada con la configuración
  */
 
 import { apiClient } from './client';
@@ -8,7 +8,7 @@ import { normalizeConfigResponse } from './transformers';
 
 export const configApi = {
   /**
-   * 获取配置（会进行字段规范化）
+   * Obtener configuración (con normalización de campos)
    */
   async getConfig(): Promise<Config> {
     const raw = await apiClient.get('/config');
@@ -16,60 +16,60 @@ export const configApi = {
   },
 
   /**
-   * 获取原始配置（不做转换）
+   * Obtener configuración cruda (sin transformación)
    */
   getRawConfig: () => apiClient.get('/config'),
 
   /**
-   * 更新 Debug 模式
+   * Actualizar modo Debug
    */
   updateDebug: (enabled: boolean) => apiClient.put('/debug', { value: enabled }),
 
   /**
-   * 更新代理 URL
+   * Actualizar URL del proxy
    */
   updateProxyUrl: (proxyUrl: string) => apiClient.put('/proxy-url', { value: proxyUrl }),
 
   /**
-   * 清除代理 URL
+   * Limpiar URL del proxy
    */
   clearProxyUrl: () => apiClient.delete('/proxy-url'),
 
   /**
-   * 更新重试次数
+   * Actualizar número de reintentos
    */
   updateRequestRetry: (retryCount: number) => apiClient.put('/request-retry', { value: retryCount }),
 
   /**
-   * 配额回退：切换项目
+   * Cuota excedida: Cambiar de proyecto
    */
   updateSwitchProject: (enabled: boolean) =>
     apiClient.put('/quota-exceeded/switch-project', { value: enabled }),
 
   /**
-   * 配额回退：切换预览模型
+   * Cuota excedida: Cambiar a modelo de vista previa (preview model)
    */
   updateSwitchPreviewModel: (enabled: boolean) =>
     apiClient.put('/quota-exceeded/switch-preview-model', { value: enabled }),
 
   /**
-   * 使用统计开关
+   * Interruptor de estadísticas de uso
    */
   updateUsageStatistics: (enabled: boolean) =>
     apiClient.put('/usage-statistics-enabled', { value: enabled }),
 
   /**
-   * 请求日志开关
+   * Interruptor de registro de solicitudes (Request Log)
    */
   updateRequestLog: (enabled: boolean) => apiClient.put('/request-log', { value: enabled }),
 
   /**
-   * 写日志到文件开关
+   * Interruptor para guardar registros en archivo
    */
   updateLoggingToFile: (enabled: boolean) => apiClient.put('/logging-to-file', { value: enabled }),
 
   /**
-   * 获取日志总大小上限（MB）
+   * Obtener el límite máximo del tamaño total de registros (MB)
    */
   async getLogsMaxTotalSizeMb(): Promise<number> {
     const data = await apiClient.get<Record<string, unknown>>('/logs-max-total-size-mb');
@@ -79,18 +79,18 @@ export const configApi = {
   },
 
   /**
-   * 更新日志总大小上限（MB）
+   * Actualizar el límite máximo del tamaño total de registros (MB)
    */
   updateLogsMaxTotalSizeMb: (value: number) =>
     apiClient.put('/logs-max-total-size-mb', { value }),
 
   /**
-   * WebSocket 鉴权开关
+   * Interruptor de autenticación WebSocket
    */
   updateWsAuth: (enabled: boolean) => apiClient.put('/ws-auth', { value: enabled }),
 
   /**
-   * 获取强制模型前缀开关
+   * Obtener interruptor de prefijo de modelo forzado
    */
   async getForceModelPrefix(): Promise<boolean> {
     const data = await apiClient.get<Record<string, unknown>>('/force-model-prefix');
@@ -98,12 +98,12 @@ export const configApi = {
   },
 
   /**
-   * 更新强制模型前缀开关
+   * Actualizar interruptor de prefijo de modelo forzado
    */
   updateForceModelPrefix: (enabled: boolean) => apiClient.put('/force-model-prefix', { value: enabled }),
 
   /**
-   * 获取路由策略
+   * Obtener estrategia de enrutamiento
    */
   async getRoutingStrategy(): Promise<string> {
     const data = await apiClient.get<Record<string, unknown>>('/routing/strategy');
@@ -112,7 +112,7 @@ export const configApi = {
   },
 
   /**
-   * 更新路由策略
+   * Actualizar estrategia de enrutamiento
    */
   updateRoutingStrategy: (strategy: string) => apiClient.put('/routing/strategy', { value: strategy }),
 };

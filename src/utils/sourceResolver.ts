@@ -27,11 +27,11 @@ export function buildSourceInfoMap(input: SourceInfoMapInput): Map<string, Sourc
     type: string;
     label: string;
   }> = [
-    { items: input.geminiApiKeys || [], type: 'gemini', label: 'Gemini' },
-    { items: input.claudeApiKeys || [], type: 'claude', label: 'Claude' },
-    { items: input.codexApiKeys || [], type: 'codex', label: 'Codex' },
-    { items: input.vertexApiKeys || [], type: 'vertex', label: 'Vertex' },
-  ];
+      { items: input.geminiApiKeys || [], type: 'gemini', label: 'Gemini' },
+      { items: input.claudeApiKeys || [], type: 'claude', label: 'Claude' },
+      { items: input.codexApiKeys || [], type: 'codex', label: 'Codex' },
+      { items: input.vertexApiKeys || [], type: 'vertex', label: 'Vertex' },
+    ];
 
   providers.forEach(({ items, type, label }) => {
     items.forEach((item, index) => {
@@ -44,7 +44,7 @@ export function buildSourceInfoMap(input: SourceInfoMapInput): Map<string, Sourc
     });
   });
 
-  // OpenAI 特殊处理：多 apiKeyEntries
+  // Manejo especial de OpenAI: múltiples apiKeyEntries
   (input.openaiCompatibility || []).forEach((provider, providerIndex) => {
     const displayName = provider.prefix?.trim() || provider.name || `OpenAI #${providerIndex + 1}`;
     const candidates = new Set<string>();

@@ -27,9 +27,7 @@
   display: flex;
   flex-direction: column;
   gap: $spacing-xl;
-  padding-bottom: calc(
-    var(--provider-nav-height, 60px) + 12px + env(safe-area-inset-bottom) + #{$spacing-md}
-  );
+  padding-bottom: calc(var(--provider-nav-height, 60px) + 12px + env(safe-area-inset-bottom) + #{$spacing-md});
 }
 
 .section {
@@ -62,7 +60,7 @@
   }
 }
 
-// 成功失败次数统计样式
+// Estilo de estadísticas de éxitos y fallos
 .cardStats {
   display: flex;
   flex-wrap: wrap;
@@ -98,7 +96,7 @@
   border-color: var(--failure-badge-border);
 }
 
-// 字段行样式：标签 + 值
+// Estilo de fila de campo: etiqueta + valor
 .fieldRow {
   display: flex;
   flex-wrap: wrap;
@@ -123,7 +121,7 @@
   font-family: 'Monaco', 'Menlo', 'Consolas', 'Ubuntu Mono', monospace;
 }
 
-// 自定义请求头徽章
+// Insignia de encabezados personalizados
 .headerBadgeList {
   display: flex;
   flex-wrap: wrap;
@@ -148,7 +146,7 @@
   }
 }
 
-// 模型标签容器
+// Contenedor de etiquetas de modelos
 .modelTagList {
   display: flex;
   flex-wrap: wrap;
@@ -168,7 +166,7 @@
   flex-shrink: 0;
 }
 
-// 单个模型标签
+// Etiqueta de modelo individual
 .modelTag {
   display: inline-flex;
   align-items: center;
@@ -201,7 +199,7 @@
   }
 }
 
-// 排除模型标签（警告色）
+// Etiqueta de modelo excluido (color de advertencia)
 .excludedModelTag {
   background: var(--warning-bg, #fef3c7);
   border-color: var(--warning-border, #fbbf24);
@@ -212,7 +210,7 @@
   }
 }
 
-// 排除模型区块
+// Bloque de modelos excluidos
 .excludedModelsSection {
   margin-top: 8px;
 }
@@ -224,7 +222,7 @@
   margin-bottom: 4px;
 }
 
-// API密钥条目列表（二级卡片）
+// Lista de entradas de claves API (tarjetas de segundo nivel)
 .apiKeyEntriesSection {
   margin-top: 10px;
 }
@@ -315,7 +313,7 @@
   color: var(--failure-badge-text);
 }
 
-// OpenAI 模型发现（二级界面）
+// Descubrimiento de modelos OpenAI (interfaz de segundo nivel)
 .modelDiscoveryList {
   display: flex;
   flex-direction: column;
@@ -387,7 +385,7 @@
   }
 }
 
-// 状态监测栏
+// Barra de monitoreo de estado
 .statusBar {
   display: flex;
   align-items: center;
@@ -447,7 +445,7 @@
   pointer-events: none;
   color: var(--text-primary);
 
-  // 小箭头
+  // Flecha pequeña
   &::after {
     content: '';
     position: absolute;
@@ -469,7 +467,7 @@
   }
 }
 
-// 防止左右溢出
+// Prevenir desbordamiento horizontal
 .statusTooltipLeft {
   left: 0;
   transform: translateX(0);
@@ -813,7 +811,7 @@
   border-radius: $radius-md;
 }
 
-// 表头
+// Cabecera de la tabla
 .keyTableHeader {
   display: grid;
   grid-template-columns: 46px 56px minmax(220px, 1.4fr) minmax(200px, 1.1fr) 180px;
@@ -832,7 +830,7 @@
   text-align: center;
 }
 
-// 数据行
+// Fila de datos
 .keyTableRow {
   display: grid;
   grid-template-columns: 46px 56px minmax(220px, 1.4fr) minmax(200px, 1.1fr) 180px;
@@ -853,7 +851,7 @@
   }
 }
 
-// 列定义
+// Definición de columna
 .keyTableColIndex {
   display: flex;
   align-items: center;
@@ -936,12 +934,13 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
-// 暗色主题适配
+// Adaptación para tema oscuro
 :global([data-theme='dark']) {
   .headerBadge {
     background: rgba($primary-color, 0.14);

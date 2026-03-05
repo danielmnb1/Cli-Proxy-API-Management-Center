@@ -51,7 +51,7 @@ export function CredentialStatsCard({
   const { t } = useTranslation();
   const [authFileMap, setAuthFileMap] = useState<Map<string, CredentialInfo>>(new Map());
 
-  // Fetch auth files for auth_index-based matching
+  // Obtener archivos de autenticación para el emparejamiento basado en auth_index
   useEffect(() => {
     let cancelled = false;
     authFilesApi
@@ -73,12 +73,12 @@ export function CredentialStatsCard({
         });
         setAuthFileMap(map);
       })
-      .catch(() => {});
+      .catch(() => { });
     return () => { cancelled = true; };
   }, []);
 
-  // Aggregate rows: all from bySource only (no separate byAuthIndex rows to avoid duplicates).
-  // Auth files are used purely for name resolution of unmatched source IDs.
+  // Agregar filas: todas solo desde bySource (sin filas separadas por byAuthIndex para evitar duplicados).
+  // Los archivos de autenticación se utilizan puramente para la resolución de nombres de IDs de origen no coincidentes.
   const rows = useMemo((): CredentialRow[] => {
     if (!usage) return [];
     const details = collectUsageDetails(usage);
@@ -133,7 +133,7 @@ export function CredentialStatsCard({
       target.successRate = target.total > 0 ? (target.success / target.total) * 100 : 100;
     };
 
-    // Aggregate all candidate source IDs for one provider config into a single row
+    // Agregar todos los IDs de origen candidatos para una configuración de proveedor en una sola fila
     const addConfigRow = (
       apiKey: string,
       prefix: string | undefined,
@@ -166,7 +166,7 @@ export function CredentialStatsCard({
       }
     };
 
-    // Provider rows — one row per config, stats merged across all its candidate source IDs
+    // Filas de proveedores — una fila por configuración, estadísticas fusionadas de todos sus IDs de origen candidatos
     geminiKeys.forEach((c, i) =>
       addConfigRow(c.apiKey, c.prefix, c.prefix?.trim() || `Gemini #${i + 1}`, 'gemini', `gemini:${i}`));
     claudeConfigs.forEach((c, i) =>
@@ -175,7 +175,7 @@ export function CredentialStatsCard({
       addConfigRow(c.apiKey, c.prefix, c.prefix?.trim() || `Codex #${i + 1}`, 'codex', `codex:${i}`));
     vertexConfigs.forEach((c, i) =>
       addConfigRow(c.apiKey, c.prefix, c.prefix?.trim() || `Vertex #${i + 1}`, 'vertex', `vertex:${i}`));
-    // OpenAI compatibility providers — one row per provider, merged across all apiKey entries (prefix counted once).
+    // Proveedores de compatibilidad con OpenAI — una fila por proveedor, fusionada de todas las entradas de apiKey (el prefijo se cuenta una vez).
     openaiProviders.forEach((provider, providerIndex) => {
       const prefix = provider.prefix;
       const displayName = prefix?.trim() || provider.name || `OpenAI #${providerIndex + 1}`;
@@ -211,7 +211,7 @@ export function CredentialStatsCard({
       }
     });
 
-    // Remaining unmatched bySource entries — resolve name from auth files if possible
+    // Entradas de bySource restantes sin coincidencia — resolver el nombre desde los archivos de autenticación si es posible
     Object.entries(bySource).forEach(([key, bucket]) => {
       if (consumedSourceIds.has(key)) return;
       const total = bucket.success + bucket.failure;
@@ -232,7 +232,7 @@ export function CredentialStatsCard({
       }
     });
 
-    // Include requests that have auth_index but missing source.
+    // Incluir solicitudes que tienen auth_index pero les falta el origen.
     fallbackByAuthIndex.forEach((bucket, authIdx) => {
       if (bucket.success + bucket.failure === 0) return;
 
@@ -275,51 +275,51 @@ export function CredentialStatsCard({
         <div className={styles.hint}>{t('common.loading')}</div>
       ) : rows.length > 0 ? (
         <div className={styles.detailsScroll}>
-        <div className={styles.tableWrapper}>
-          <table className={styles.table}>
-            <thead>
-              <tr>
-                <th>{t('usage_stats.credential_name')}</th>
-                <th>{t('usage_stats.requests_count')}</th>
-                <th>{t('usage_stats.success_rate')}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {rows.map((row) => (
-                <tr key={row.key}>
-                  <td className={styles.modelCell}>
-                    <span>{row.displayName}</span>
-                    {row.type && (
-                      <span className={styles.credentialType}>{row.type}</span>
-                    )}
-                  </td>
-                  <td>
-                    <span className={styles.requestCountCell}>
-                      <span>{formatCompactNumber(row.total)}</span>
-                      <span className={styles.requestBreakdown}>
-                        (<span className={styles.statSuccess}>{row.success.toLocaleString()}</span>{' '}
-                        <span className={styles.statFailure}>{row.failure.toLocaleString()}</span>)
-                      </span>
-                    </span>
-                  </td>
-                  <td>
-                    <span
-                      className={
-                        row.successRate >= 95
-                          ? styles.statSuccess
-                          : row.successRate >= 80
-                            ? styles.statNeutral
-                            : styles.statFailure
-                      }
-                    >
-                      {row.successRate.toFixed(1)}%
-                    </span>
-                  </td>
+          <div className={styles.tableWrapper}>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th>{t('usage_stats.credential_name')}</th>
+                  <th>{t('usage_stats.requests_count')}</th>
+                  <th>{t('usage_stats.success_rate')}</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {rows.map((row) => (
+                  <tr key={row.key}>
+                    <td className={styles.modelCell}>
+                      <span>{row.displayName}</span>
+                      {row.type && (
+                        <span className={styles.credentialType}>{row.type}</span>
+                      )}
+                    </td>
+                    <td>
+                      <span className={styles.requestCountCell}>
+                        <span>{formatCompactNumber(row.total)}</span>
+                        <span className={styles.requestBreakdown}>
+                          (<span className={styles.statSuccess}>{row.success.toLocaleString()}</span>{' '}
+                          <span className={styles.statFailure}>{row.failure.toLocaleString()}</span>)
+                        </span>
+                      </span>
+                    </td>
+                    <td>
+                      <span
+                        className={
+                          row.successRate >= 95
+                            ? styles.statSuccess
+                            : row.successRate >= 80
+                              ? styles.statNeutral
+                              : styles.statFailure
+                        }
+                      >
+                        {row.successRate.toFixed(1)}%
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       ) : (
         <div className={styles.hint}>{t('usage_stats.no_data')}</div>

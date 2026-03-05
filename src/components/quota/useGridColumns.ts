@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
 
 /**
- * Hook to calculate the number of grid columns based on container width and item min-width.
- * Returns [columns, refCallback].
+ * Hook para calcular el número de columnas de la cuadrícula basado en el ancho del contenedor y el ancho mínimo del elemento.
+ * Devuelve [columnas, refCallback].
  */
 export function useGridColumns(
     itemMinWidth: number,

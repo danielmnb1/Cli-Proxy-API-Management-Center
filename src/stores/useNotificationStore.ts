@@ -1,6 +1,6 @@
 /**
- * 通知状态管理
- * 替代原项目中的 showNotification 方法
+ * Gestión del estado de notificaciones
+ * Reemplaza el método showNotification del proyecto original
  */
 
 import { create } from 'zustand';
@@ -55,7 +55,7 @@ export const useNotificationStore = create<NotificationState>((set) => ({
       notifications: [...state.notifications, notification]
     }));
 
-    // 自动移除通知
+    // Eliminar notificación automáticamente
     if (duration > 0) {
       setTimeout(() => {
         set((state) => ({
@@ -90,7 +90,7 @@ export const useNotificationStore = create<NotificationState>((set) => ({
       confirmation: {
         ...state.confirmation,
         isOpen: false,
-        options: null // Cleanup
+        options: null // Limpieza
       }
     }));
   },

@@ -1,5 +1,5 @@
 /**
- * OAuth 与设备码登录相关 API
+ * API relacionada con OAuth y el inicio de sesión con código de dispositivo
  */
 
 import { apiClient } from './client';
@@ -62,7 +62,7 @@ export const oauthApi = {
     });
   },
 
-  /** iFlow cookie 认证 */
+  /** Autenticación de iFlow cookie */
   iflowCookieAuth: (cookie: string) =>
     apiClient.post<IFlowCookieAuthResponse>('/iflow-auth-url', { cookie })
 };

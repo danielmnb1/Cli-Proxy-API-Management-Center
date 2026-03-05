@@ -147,7 +147,7 @@
       color: var(--primary-color);
     }
 
-    // 移动端：禁用动画，只显示缩写
+    // Móvil: deshabilitar animaciones, solo mostrar abreviaturas
     @media (max-width: $breakpoint-mobile) {
       cursor: default;
       flex-shrink: 1;

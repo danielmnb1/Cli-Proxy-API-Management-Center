@@ -27,14 +27,14 @@ export const SecondaryScreenShell = forwardRef<HTMLDivElement, SecondaryScreenSh
     {
       title,
       onBack,
-      backLabel = 'Back',
+      backLabel = 'Volver',
       backAriaLabel,
       rightAction,
       hideTopBarBackButton = false,
       hideTopBarRightAction = false,
       floatingAction,
       isLoading = false,
-      loadingLabel = 'Loading...',
+      loadingLabel = 'Cargando...',
       className = '',
       contentClassName = '',
       children,
@@ -121,13 +121,13 @@ export const SecondaryScreenShell = forwardRef<HTMLDivElement, SecondaryScreenSh
         </div>
         {shouldRenderFloatingAction && typeof document !== 'undefined'
           ? createPortal(
-              <div className={styles.floatingActionContainer}>
-                <div className={styles.floatingActionSurface} ref={floatingActionRef}>
-                  {floatingAction}
-                </div>
-              </div>,
-              document.body
-            )
+            <div className={styles.floatingActionContainer}>
+              <div className={styles.floatingActionSurface} ref={floatingActionRef}>
+                {floatingAction}
+              </div>
+            </div>,
+            document.body
+          )
           : null}
       </>
     );

@@ -1,5 +1,5 @@
 /**
- * Validation and type checking functions for quota management.
+ * Funciones de validación y comprobación de tipos para la gestión de cuotas.
  */
 
 import type { AuthFileItem } from '@/types';

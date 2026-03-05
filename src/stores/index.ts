@@ -1,5 +1,5 @@
 /**
- * Zustand Stores 统一导出
+ * Exportación unificada de Zustand Stores
  */
 
 export { useNotificationStore } from './useNotificationStore';

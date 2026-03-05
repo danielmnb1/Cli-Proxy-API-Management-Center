@@ -1,5 +1,5 @@
 /**
- * LocalStorage Hook
+ * Hook de LocalStorage
  */
 
 import { useState } from 'react';
@@ -13,7 +13,7 @@ export function useLocalStorage<T>(
       const item = window.localStorage.getItem(key);
       return item ? (JSON.parse(item) as T) : initialValue;
     } catch (error) {
-      console.error(`Error reading localStorage key "${key}":`, error);
+      console.error(`Error al leer la clave "${key}" de localStorage:`, error);
       return initialValue;
     }
   });
@@ -24,7 +24,7 @@ export function useLocalStorage<T>(
       setStoredValue(valueToStore);
       window.localStorage.setItem(key, JSON.stringify(valueToStore));
     } catch (error) {
-      console.error(`Error setting localStorage key "${key}":`, error);
+      console.error(`Error al establecer la clave "${key}" en localStorage:`, error);
     }
   };
 

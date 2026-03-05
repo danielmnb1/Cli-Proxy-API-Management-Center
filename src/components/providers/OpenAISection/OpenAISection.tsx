@@ -178,7 +178,7 @@ export function OpenAISection({
                 ) : null}
                 {item.testModel && (
                   <div className={styles.fieldRow}>
-                    <span className={styles.fieldLabel}>Test Model:</span>
+                    <span className={styles.fieldLabel}>{t('ai_providers.test_model')}:</span>
                     <span className={styles.fieldValue}>{item.testModel}</span>
                   </div>
                 )}

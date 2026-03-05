@@ -1,5 +1,5 @@
 /**
- * 通用 API 调用 Hook
+ * Hook genérico para llamadas a la API
  */
 
 import { useState, useCallback } from 'react';
@@ -40,7 +40,7 @@ export function useApi<T = unknown, Args extends unknown[] = unknown[]>(
         return result;
       } catch (err: unknown) {
         const errorObj =
-          err instanceof Error ? err : new Error(typeof err === 'string' ? err : 'Unknown error');
+          err instanceof Error ? err : new Error(typeof err === 'string' ? err : 'Error desconocido');
         setError(errorObj);
 
         if (options.showErrorNotification !== false) {

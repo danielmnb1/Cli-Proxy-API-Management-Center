@@ -77,6 +77,7 @@ export function RequestEventsDetailsCard({
   const [authIndexFilter, setAuthIndexFilter] = useState(ALL_FILTER);
   const [authFileMap, setAuthFileMap] = useState<Map<string, CredentialInfo>>(new Map());
 
+  // Obtener archivos de autenticación para resolver nombres
   useEffect(() => {
     let cancelled = false;
     authFilesApi
@@ -96,7 +97,7 @@ export function RequestEventsDetailsCard({
         });
         setAuthFileMap(map);
       })
-      .catch(() => {});
+      .catch(() => { });
     return () => {
       cancelled = true;
     };
@@ -220,6 +221,7 @@ export function RequestEventsDetailsCard({
     ? authIndexFilter
     : ALL_FILTER;
 
+  // Filtrar filas según los filtros seleccionados
   const filteredRows = useMemo(
     () =>
       rows.filter((row) => {

@@ -1,9 +1,9 @@
 /**
- * 验证工具函数
+ * Funciones de utilidad para validación
  */
 
 /**
- * 验证 URL 格式
+ * Validar el formato de una URL
  */
 export function isValidUrl(url: string): boolean {
   try {
@@ -15,28 +15,28 @@ export function isValidUrl(url: string): boolean {
 }
 
 /**
- * 验证 API Base URL
+ * Validar la URL base de la API
  */
 export function isValidApiBase(apiBase: string): boolean {
   if (!apiBase) return false;
 
-  // 允许 http/https 协议
+  // Permitir protocolos http/https
   const urlPattern = /^https?:\/\/.+/i;
   return urlPattern.test(apiBase);
 }
 
 /**
- * 验证 API Key 格式
+ * Validar el formato de la clave de API (API Key)
  */
 export function isValidApiKey(key: string): boolean {
   if (!key || key.length < 8) return false;
 
-  // 基础验证：不包含空格
+  // Validación básica: no debe contener espacios
   return !/\s/.test(key);
 }
 
 /**
- * 验证 API Key 字符集（仅允许 ASCII 可见字符）
+ * Validar el conjunto de caracteres de la clave de API (solo caracteres ASCII visibles)
  */
 export function isValidApiKeyCharset(key: string): boolean {
   if (!key) return false;
@@ -44,7 +44,7 @@ export function isValidApiKeyCharset(key: string): boolean {
 }
 
 /**
- * 验证 JSON 格式
+ * Validar formato JSON
  */
 export function isValidJson(str: string): boolean {
   try {
@@ -56,7 +56,7 @@ export function isValidJson(str: string): boolean {
 }
 
 /**
- * 验证 Email 格式
+ * Validar formato de correo electrónico (Email)
  */
 export function isValidEmail(email: string): boolean {
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

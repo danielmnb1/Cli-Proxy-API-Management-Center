@@ -1,5 +1,5 @@
 /**
- * Quota configuration definitions.
+ * Definiciones de configuración de cuota.
  */
 
 import React from 'react';
@@ -281,7 +281,7 @@ const buildCodexQuotaWindows = (payload: CodexUsagePayload, t: TFunction): Codex
       }
     }
 
-    // For legacy payloads without window duration, fallback to primary/secondary ordering.
+    // Para payloads antiguos sin duración de ventana, se recurre al orden primario/secundario.
     if (allowOrderFallback) {
       if (!fiveHourWindow) {
         fiveHourWindow = primaryWindow && primaryWindow !== weeklyWindow ? primaryWindow : null;
@@ -619,8 +619,8 @@ const renderGeminiCliItems = (
       bucket.remainingAmount === null || bucket.remainingAmount === undefined
         ? null
         : t('gemini_cli_quota.remaining_amount', {
-            count: bucket.remainingAmount,
-          });
+          count: bucket.remainingAmount,
+        });
     const titleBase =
       bucket.modelIds && bucket.modelIds.length > 0 ? bucket.modelIds.join(', ') : bucket.label;
     const title = bucket.tokenType ? `${titleBase} (${bucket.tokenType})` : titleBase;

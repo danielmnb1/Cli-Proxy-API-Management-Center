@@ -1,6 +1,6 @@
 /**
- * 模型工具函数
- * 迁移自基线 utils/models.js
+ * Funciones de utilidad para modelos
+ * Migrado desde la línea base utils/models.js
  */
 
 export interface ModelInfo {

@@ -1,5 +1,5 @@
 /**
- * Generic quota section component.
+ * Componente genérico de sección de cuota.
  */
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -109,7 +109,7 @@ export function QuotaSection<TState extends QuotaStatusState, TData>({
     Record<string, TState>
   >;
 
-  /* Removed useRef */
+  /* useRef eliminado */
   const [columns, gridRef] = useGridColumns(380); // Min card width 380px matches SCSS
   const [viewMode, setViewMode] = useState<ViewMode>('paged');
   const [showTooManyWarning, setShowTooManyWarning] = useState(false);
@@ -149,12 +149,12 @@ export function QuotaSection<TState extends QuotaStatusState, TData>({
     };
   }, [showAllAllowed, viewMode]);
 
-  // Update page size based on view mode and columns
+  // Actualizar el tamaño de la página según el modo de vista y las columnas
   useEffect(() => {
     if (effectiveViewMode === 'all') {
       setPageSize(Math.max(1, filteredFiles.length));
     } else {
-      // Paged mode: 3 rows * columns, capped to avoid oversized pages.
+      // Modo paginado: 3 filas * columnas, limitado para evitar páginas excesivamente grandes.
       setPageSize(Math.min(columns * 3, MAX_ITEMS_PER_PAGE));
     }
   }, [effectiveViewMode, columns, filteredFiles.length, setPageSize]);

@@ -1,5 +1,5 @@
 /**
- * Amp CLI Integration (ampcode) 配置
+ * Configuración de Amp CLI Integration (ampcode)
  */
 
 export interface AmpcodeModelMapping {

@@ -401,7 +401,7 @@ export function ConfigPage() {
           onClick={() => handleTabChange('visual')}
           disabled={saving || loading}
         >
-          {t('config_management.tabs.visual', { defaultValue: '可视化编辑' })}
+          {t('config_management.tabs.visual', { defaultValue: 'Edición Visual' })}
         </button>
         <button
           type="button"
@@ -409,7 +409,7 @@ export function ConfigPage() {
           onClick={() => handleTabChange('source')}
           disabled={saving || loading}
         >
-          {t('config_management.tabs.source', { defaultValue: '源代码编辑' })}
+          {t('config_management.tabs.source', { defaultValue: 'Edición de Código' })}
         </button>
       </div>
 
@@ -433,7 +433,7 @@ export function ConfigPage() {
                     onChange={(e) => handleSearchChange(e.target.value)}
                     onKeyDown={handleSearchKeyDown}
                     placeholder={t('config_management.search_placeholder', {
-                      defaultValue: '搜索配置内容...'
+                      defaultValue: 'Buscar en la configuración...'
                     })}
                     disabled={disableControls || loading}
                     className={styles.searchInput}
@@ -443,7 +443,7 @@ export function ConfigPage() {
                           <span className={styles.searchCount}>
                             {searchResults.total > 0
                               ? `${searchResults.current} / ${searchResults.total}`
-                              : t('config_management.search_no_results', { defaultValue: '无结果' })}
+                              : t('config_management.search_no_results', { defaultValue: 'Sin resultados' })}
                           </span>
                         )}
                         <button
@@ -451,7 +451,7 @@ export function ConfigPage() {
                           className={styles.searchButton}
                           onClick={() => executeSearch('next')}
                           disabled={!searchQuery || disableControls || loading}
-                          title={t('config_management.search_button', { defaultValue: '搜索' })}
+                          title={t('config_management.search_button', { defaultValue: 'Buscar' })}
                         >
                           <IconSearch size={16} />
                         </button>
@@ -465,7 +465,7 @@ export function ConfigPage() {
                     size="sm"
                     onClick={handlePrevMatch}
                     disabled={!searchQuery || lastSearchedQuery !== searchQuery || searchResults.total === 0}
-                    title={t('config_management.search_prev', { defaultValue: '上一个' })}
+                    title={t('config_management.search_prev', { defaultValue: 'Anterior' })}
                   >
                     <IconChevronUp size={16} />
                   </Button>
@@ -474,7 +474,7 @@ export function ConfigPage() {
                     size="sm"
                     onClick={handleNextMatch}
                     disabled={!searchQuery || lastSearchedQuery !== searchQuery || searchResults.total === 0}
-                    title={t('config_management.search_next', { defaultValue: '下一个' })}
+                    title={t('config_management.search_next', { defaultValue: 'Siguiente' })}
                   >
                     <IconChevronDown size={16} />
                   </Button>

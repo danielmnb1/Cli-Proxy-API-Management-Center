@@ -414,7 +414,7 @@ export function AiProvidersOpenAIEditPage() {
           </Button>
         </div>
         <div className={styles.keyTableShell}>
-          {/* 表头 */}
+          {/* Encabezado de la tabla */}
           <div className={styles.keyTableHeader}>
             <div className={styles.keyTableColIndex}>#</div>
             <div className={styles.keyTableColStatus}>{t('common.status')}</div>
@@ -423,17 +423,17 @@ export function AiProvidersOpenAIEditPage() {
             <div className={styles.keyTableColAction}>{t('common.action')}</div>
           </div>
 
-          {/* 数据行 */}
+          {/* Filas de datos */}
           {list.map((entry, index) => {
             const keyStatus = keyTestStatuses[index]?.status ?? 'idle';
             const canTestKey = Boolean(entry.apiKey?.trim()) && hasConfiguredModels;
 
             return (
               <div key={index} className={styles.keyTableRow}>
-                {/* 序号 */}
+                {/* N.º */}
                 <div className={styles.keyTableColIndex}>{index + 1}</div>
 
-                {/* 状态指示灯 */}
+                {/* Indicador de estado */}
                 <div
                   className={styles.keyTableColStatus}
                   title={keyTestStatuses[index]?.message || ''}
@@ -441,7 +441,7 @@ export function AiProvidersOpenAIEditPage() {
                   <StatusIcon status={keyStatus} />
                 </div>
 
-                {/* Key 输入框 */}
+                {/* Campo de entrada de la clave */}
                 <div className={styles.keyTableColKey}>
                   <input
                     type="text"
@@ -453,7 +453,7 @@ export function AiProvidersOpenAIEditPage() {
                   />
                 </div>
 
-                {/* Proxy 输入框 */}
+                {/* Campo de entrada del proxy */}
                 <div className={styles.keyTableColProxy}>
                   <input
                     type="text"
@@ -465,7 +465,7 @@ export function AiProvidersOpenAIEditPage() {
                   />
                 </div>
 
-                {/* 操作按钮 */}
+                {/* Botones de acción */}
                 <div className={styles.keyTableColAction}>
                   <Button
                     variant="secondary"
@@ -580,9 +580,9 @@ export function AiProvidersOpenAIEditPage() {
               disabled={saving || disableControls || isTestingKeys}
             />
 
-            {/* 模型配置区域 - 统一布局 */}
+            {/* Área de configuración de modelos - diseño unificado */}
             <div className={styles.modelConfigSection}>
-              {/* 标题行 */}
+              {/* Fila de título */}
               <div className={styles.modelConfigHeader}>
                 <label className={styles.modelConfigTitle}>
                   {hasIndexParam
@@ -612,10 +612,10 @@ export function AiProvidersOpenAIEditPage() {
                 </div>
               </div>
 
-              {/* 提示文本 */}
+              {/* Texto de sugerencia */}
               <div className={styles.sectionHint}>{t('ai_providers.openai_models_hint')}</div>
 
-              {/* 模型列表 */}
+              {/* Lista de modelos */}
               <ModelInputList
                 entries={form.modelEntries}
                 onChange={(entries) => setForm((prev) => ({ ...prev, modelEntries: entries }))}
@@ -631,7 +631,7 @@ export function AiProvidersOpenAIEditPage() {
                 removeButtonAriaLabel={t('common.delete')}
               />
 
-              {/* 测试区域 */}
+              {/* Área de prueba */}
               <div className={styles.modelTestPanel}>
                 <div className={styles.modelTestMeta}>
                   <label className={styles.modelTestLabel}>{t('ai_providers.openai_test_title')}</label>
@@ -670,13 +670,12 @@ export function AiProvidersOpenAIEditPage() {
               </div>
               {testMessage && (
                 <div
-                  className={`status-badge ${
-                    testStatus === 'error'
-                      ? 'error'
-                      : testStatus === 'success'
-                        ? 'success'
-                        : 'muted'
-                  }`}
+                  className={`status-badge ${testStatus === 'error'
+                    ? 'error'
+                    : testStatus === 'success'
+                      ? 'success'
+                      : 'muted'
+                    }`}
                 >
                   {testMessage}
                 </div>

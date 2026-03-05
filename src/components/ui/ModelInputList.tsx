@@ -25,16 +25,16 @@ export function ModelInputList({
   onChange,
   addLabel,
   disabled = false,
-  namePlaceholder = 'model-name',
-  aliasPlaceholder = 'alias (optional)',
+  namePlaceholder = 'nombre-del-modelo',
+  aliasPlaceholder = 'alias (opcional)',
   hideAddButton = false,
   onAdd,
   className = '',
   rowClassName = '',
   inputClassName = '',
   removeButtonClassName = '',
-  removeButtonTitle = 'Remove',
-  removeButtonAriaLabel = 'Remove',
+  removeButtonTitle = 'Eliminar',
+  removeButtonAriaLabel = 'Eliminar',
 }: ModelInputListProps) {
   const currentEntries = entries.length ? entries : [{ name: '', alias: '' }];
   const containerClassName = ['header-input-list', className].filter(Boolean).join(' ');

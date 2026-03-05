@@ -1,5 +1,5 @@
 /**
- * 日志相关 API
+ * API relacionada con registros (Logs)
  */
 
 import { apiClient } from './client';

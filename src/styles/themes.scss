@@ -1,13 +1,13 @@
 /**
- * 主题样式
+ * Estilos de temas
  */
 
-// 浅色主题（默认）
+// Tema claro (predeterminado)
 :root {
-  // 极简暖灰：浅色模式
-  --bg-secondary: #faf9f5; // 页面背景（纸感）
-  --bg-primary: #f0eee8; // 容器/卡片背景
-  --bg-tertiary: #e9e6df; // hover/次级背景
+  // Gris cálido minimalista: modo claro
+  --bg-secondary: #faf9f5; // Fondo de página (efecto papel)
+  --bg-primary: #f0eee8; // Fondo de contenedor/tarjeta
+  --bg-tertiary: #e9e6df; // Fondo secundario/hover
   --bg-hover: var(--bg-tertiary);
   --bg-quinary: #f6f4ee;
   --bg-error-light: rgba(198, 87, 70, 0.1);
@@ -18,18 +18,18 @@
   --text-quaternary: #c0bab3;
   --text-muted: var(--text-tertiary);
 
-  --border-color: #e3e1db; // 边框/分割线
+  --border-color: #e3e1db; // Borde/línea divisoria
   --border-secondary: var(--border-color);
   --border-primary: #d5d2cb;
   --border-hover: #cecac4;
 
-  --primary-color: #8b8680; // 行动色（主色）
+  --primary-color: #8b8680; // Color de acción (color principal)
   --primary-hover: #7f7a74;
   --primary-active: #726d67;
   --primary-contrast: #ffffff;
 
   --success-color: #10b981;
-  --warning-color: #c65746; // 错误/警告色
+  --warning-color: #c65746; // Color de error/advertencia
   --error-color: #c65746;
   --danger-color: var(--error-color);
   --info-color: var(--primary-color);
@@ -56,12 +56,12 @@
   --accent-tertiary: var(--bg-tertiary);
 }
 
-// 深色主题（#191919）
+// Tema oscuro (#191919)
 [data-theme='dark'] {
-  // 极简暖灰：深色模式（提升对比度与层级）
-  --bg-secondary: #151412; // 页面背景
-  --bg-primary: #1d1b18; // 容器/卡片背景
-  --bg-tertiary: #262320; // hover/次级背景
+  // Gris cálido minimalista: modo oscuro (mejora contraste y jerarquía)
+  --bg-secondary: #151412; // Fondo de página
+  --bg-primary: #1d1b18; // Fondo de contenedor/tarjeta
+  --bg-tertiary: #262320; // Fondo secundario/hover
   --bg-hover: #2e2a26;
   --bg-quinary: #191714;
   --bg-error-light: rgba(198, 87, 70, 0.18);

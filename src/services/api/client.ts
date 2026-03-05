@@ -1,6 +1,6 @@
 /**
- * Axios API 客户端
- * 替代原项目 src/core/api-client.js
+ * Cliente API Axios
+ * Sustituye al archivo original src/core/api-client.js
  */
 
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
@@ -29,7 +29,7 @@ class ApiClient {
   }
 
   /**
-   * 设置 API 配置
+   * Establecer configuración de la API
    */
   setConfig(config: ApiClientConfig): void {
     this.apiBase = computeApiUrl(config.apiBase);
@@ -82,20 +82,20 @@ class ApiClient {
   }
 
   /**
-   * 设置请求/响应拦截器
+   * Configurar interceptores de solicitud/respuesta
    */
   private setupInterceptors(): void {
-    // 请求拦截器
+    // Interceptor de solicitud
     this.instance.interceptors.request.use(
       (config) => {
-        // 设置 baseURL
+        // Establecer baseURL
         config.baseURL = this.apiBase;
         if (config.url) {
-          // Normalize deprecated Gemini endpoint to the current path.
+          // Normalizar el endpoint de Gemini obsoleto a la ruta actual.
           config.url = config.url.replace(/\/generative-language-api-key\b/g, '/gemini-api-key');
         }
 
-        // 添加认证头
+        // Añadir encabezado de autenticación
         if (this.managementKey) {
           config.headers.Authorization = `Bearer ${this.managementKey}`;
         }
@@ -105,14 +105,14 @@ class ApiClient {
       (error) => Promise.reject(this.handleError(error))
     );
 
-    // 响应拦截器
+    // Interceptor de respuesta
     this.instance.interceptors.response.use(
       (response) => {
         const headers = response.headers as Record<string, string | undefined>;
         const version = this.readHeader(headers, VERSION_HEADER_KEYS);
         const buildDate = this.readHeader(headers, BUILD_DATE_HEADER_KEYS);
 
-        // 触发版本更新事件（后续通过 store 处理）
+        // Disparar evento de actualización de versión (se manejará en el store posteriormente)
         if (version || buildDate) {
           window.dispatchEvent(
             new CustomEvent('server-version-update', {
@@ -128,7 +128,7 @@ class ApiClient {
   }
 
   /**
-   * 错误处理
+   * Manejo de errores
    */
   private handleError(error: unknown): ApiError {
     const isRecord = (value: unknown): value is Record<string, unknown> =>
@@ -145,7 +145,7 @@ class ApiClient {
             ? errorValue.message
             : typeof responseRecord?.message === 'string'
               ? responseRecord.message
-              : error.message || 'Request failed';
+              : error.message || 'La solicitud falló';
       const apiError = new Error(message) as ApiError;
       apiError.name = 'ApiError';
       apiError.status = error.response?.status;
@@ -153,7 +153,7 @@ class ApiClient {
       apiError.details = responseData;
       apiError.data = responseData;
 
-      // 401 未授权 - 触发登出事件
+      // 401 No autorizado - Disparar evento de cierre de sesión
       if (error.response?.status === 401) {
         window.dispatchEvent(new Event('unauthorized'));
       }
@@ -162,14 +162,14 @@ class ApiClient {
     }
 
     const fallbackMessage =
-      error instanceof Error ? error.message : typeof error === 'string' ? error : 'Unknown error occurred';
+      error instanceof Error ? error.message : typeof error === 'string' ? error : 'Ocurrió un error desconocido';
     const fallback = new Error(fallbackMessage) as ApiError;
     fallback.name = 'ApiError';
     return fallback;
   }
 
   /**
-   * GET 请求
+   * Solicitud GET
    */
   async get<T = unknown>(url: string, config?: AxiosRequestConfig): Promise<T> {
     const response = await this.instance.get<T>(url, config);
@@ -177,7 +177,7 @@ class ApiClient {
   }
 
   /**
-   * POST 请求
+   * Solicitud POST
    */
   async post<T = unknown>(url: string, data?: unknown, config?: AxiosRequestConfig): Promise<T> {
     const response = await this.instance.post<T>(url, data, config);
@@ -185,7 +185,7 @@ class ApiClient {
   }
 
   /**
-   * PUT 请求
+   * Solicitud PUT
    */
   async put<T = unknown>(url: string, data?: unknown, config?: AxiosRequestConfig): Promise<T> {
     const response = await this.instance.put<T>(url, data, config);
@@ -193,7 +193,7 @@ class ApiClient {
   }
 
   /**
-   * PATCH 请求
+   * Solicitud PATCH
    */
   async patch<T = unknown>(url: string, data?: unknown, config?: AxiosRequestConfig): Promise<T> {
     const response = await this.instance.patch<T>(url, data, config);
@@ -201,7 +201,7 @@ class ApiClient {
   }
 
   /**
-   * DELETE 请求
+   * Solicitud DELETE
    */
   async delete<T = unknown>(url: string, config?: AxiosRequestConfig): Promise<T> {
     const response = await this.instance.delete<T>(url, config);
@@ -209,14 +209,14 @@ class ApiClient {
   }
 
   /**
-   * 获取原始响应（用于下载等场景）
+   * Obtener respuesta cruda (utilizada para descargas, etc.)
    */
   async getRaw(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse> {
     return this.instance.get(url, config);
   }
 
   /**
-   * 发送 FormData
+   * Enviar FormData
    */
   async postForm<T = unknown>(
     url: string,
@@ -234,12 +234,12 @@ class ApiClient {
   }
 
   /**
-   * 保留对 axios.request 的访问，便于下载等场景
+   * Mantener acceso a axios.request para casos específicos como descargas
    */
   async requestRaw(config: AxiosRequestConfig): Promise<AxiosResponse> {
     return this.instance.request(config);
   }
 }
 
-// 导出单例
+// Exportar instancia única (Singleton)
 export const apiClient = new ApiClient();

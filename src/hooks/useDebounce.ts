@@ -1,5 +1,5 @@
 /**
- * 防抖 Hook
+ * Hook de Debounce
  */
 
 import { useEffect, useState } from 'react';

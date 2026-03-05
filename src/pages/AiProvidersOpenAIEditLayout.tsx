@@ -428,70 +428,65 @@ export function AiProvidersOpenAIEditLayout() {
       await providersApi.saveOpenAIProviders(nextList);
 
       let syncedProviders = nextList;
-      try {
-        const latest = await fetchConfig('openai-compatibility', true);
-        if (Array.isArray(latest)) {
-          syncedProviders = latest as OpenAIProviderConfig[];
-        }
-      } catch {
-        // 保存成功后刷新失败时，回退到本地计算结果，避免页面数据为空或回退
-      }
-
-      setProviders(syncedProviders);
-      showNotification(
-        editIndex !== null
-          ? t('notification.openai_provider_updated')
-          : t('notification.openai_provider_added'),
-        'success'
-      );
-      allowNextNavigation();
-      setDraftBaselineSignature(draftKey, buildOpenAISignature(form, testModel));
-      handleBack();
-    } catch (err: unknown) {
-      showNotification(`${t('notification.update_failed')}: ${getErrorMessage(err)}`, 'error');
-    } finally {
-      setSaving(false);
+    } catch {
+      // En caso de que falle la actualización tras guardar, revertir al resultado calculado localmente para evitar datos vacíos o regresiones en la página.
     }
-  }, [
-    allowNextNavigation,
-    draftKey,
-    editIndex,
-    fetchConfig,
-    form,
-    handleBack,
-    providers,
-    setDraftBaselineSignature,
-    showNotification,
-    t,
-    testModel,
-  ]);
 
-  return (
-    <Outlet
-      context={{
-        hasIndexParam,
-        editIndex,
-        invalidIndexParam,
-        invalidIndex,
-        disableControls,
-        loading: resolvedLoading,
-        saving,
-        form,
-        setForm,
-        testModel,
-        setTestModel,
-        testStatus,
-        setTestStatus,
-        testMessage,
-        setTestMessage,
-        keyTestStatuses,
-        setDraftKeyTestStatus: handleSetDraftKeyTestStatus,
-        resetDraftKeyTestStatuses: handleResetDraftKeyTestStatuses,
-        availableModels,
-        handleBack,
-        handleSave,
-        mergeDiscoveredModels,
-      } satisfies OpenAIEditOutletContext}
-    />
-  );
+    setProviders(syncedProviders);
+    showNotification(
+      editIndex !== null
+        ? t('notification.openai_provider_updated')
+        : t('notification.openai_provider_added'),
+      'success'
+    );
+    allowNextNavigation();
+    setDraftBaselineSignature(draftKey, buildOpenAISignature(form, testModel));
+    handleBack();
+  } catch (err: unknown) {
+    showNotification(`${t('notification.update_failed')}: ${getErrorMessage(err)}`, 'error');
+  } finally {
+    setSaving(false);
+  }
+}, [
+  allowNextNavigation,
+  draftKey,
+  editIndex,
+  fetchConfig,
+  form,
+  handleBack,
+  providers,
+  setDraftBaselineSignature,
+  showNotification,
+  t,
+  testModel,
+]);
+
+return (
+  <Outlet
+    context={{
+      hasIndexParam,
+      editIndex,
+      invalidIndexParam,
+      invalidIndex,
+      disableControls,
+      loading: resolvedLoading,
+      saving,
+      form,
+      setForm,
+      testModel,
+      setTestModel,
+      testStatus,
+      setTestStatus,
+      testMessage,
+      setTestMessage,
+      keyTestStatuses,
+      setDraftKeyTestStatus: handleSetDraftKeyTestStatus,
+      resetDraftKeyTestStatuses: handleResetDraftKeyTestStatuses,
+      availableModels,
+      handleBack,
+      handleSave,
+      mergeDiscoveredModels,
+    } satisfies OpenAIEditOutletContext}
+  />
+);
 }

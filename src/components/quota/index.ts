@@ -1,5 +1,5 @@
 /**
- * Quota components barrel export.
+ * Exportación barril de los componentes de cuota.
  */
 
 export { QuotaSection } from './QuotaSection';

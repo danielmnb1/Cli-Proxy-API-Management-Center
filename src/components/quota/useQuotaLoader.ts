@@ -1,5 +1,5 @@
 /**
- * Generic hook for quota data fetching and management.
+ * Hook genérico para la obtención y gestión de datos de cuota.
  */
 
 import { useCallback, useRef } from 'react';

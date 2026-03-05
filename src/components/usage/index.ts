@@ -1,4 +1,4 @@
-// Hooks
+// Hooks (Ganchos)
 export { useUsageData } from './hooks/useUsageData';
 export type { UsagePayload, UseUsageDataReturn } from './hooks/useUsageData';
 
@@ -8,7 +8,7 @@ export type { SparklineData, SparklineBundle, UseSparklinesOptions, UseSparkline
 export { useChartData } from './hooks/useChartData';
 export type { UseChartDataOptions, UseChartDataReturn } from './hooks/useChartData';
 
-// Components
+// Componentes
 export { StatCards } from './StatCards';
 export type { StatCardsProps } from './StatCards';
 

@@ -1,13 +1,13 @@
 @use '../styles/variables.scss' as *;
 
-// 主容器 - 左右分栏布局
+// Contenedor principal - diseño de columnas izquierda y derecha
 .container {
   min-height: 100vh;
   display: flex;
   background: var(--bg-secondary);
 }
 
-// 左侧品牌展示区
+// Área de exhibición de marca izquierda
 .brandPanel {
   flex: 1;
   display: flex;
@@ -19,13 +19,13 @@
   position: relative;
   overflow: hidden;
 
-  // 移动端隐藏
+  // Ocultar en dispositivos móviles
   @media (max-width: $breakpoint-mobile) {
     display: none;
   }
 }
 
-// 品牌文字容器
+// Contenedor de texto de marca
 .brandContent {
   position: relative;
   z-index: 1;
@@ -37,7 +37,7 @@
   gap: 0;
 }
 
-// 品牌大字淡入动画
+// Animación de desvanecimiento de palabras de marca
 @keyframes brandFadeIn {
   from {
     opacity: 0;
@@ -49,7 +49,7 @@
   }
 }
 
-// 品牌大字
+// Palabras de marca
 .brandWord {
   font-size: 14vw;
   font-weight: 900;
@@ -63,7 +63,7 @@
   opacity: 0;
   animation: brandFadeIn 0.8s ease-out forwards;
 
-  // 不同字有不同的透明度和延迟，从上到下依次显现
+  // Diferentes palabras tienen diferentes opacidades y retrasos, apareciendo secuencialmente de arriba a abajo
   &:nth-child(1) {
     --target-opacity: 0.95;
     animation-delay: 0.1s;
@@ -80,7 +80,7 @@
   }
 }
 
-// 右侧功能交互区
+// Área de interacción funcional derecha
 .formPanel {
   flex: 1;
   display: flex;
@@ -97,7 +97,7 @@
   }
 }
 
-// 右侧内容容器
+// Contenedor de contenido derecho
 .formContent {
   width: 100%;
   max-width: 420px;
@@ -117,7 +117,7 @@
   border: 3px solid var(--border-color);
 }
 
-// 登录表单卡片
+// Tarjeta de formulario de inicio de sesión
 .loginCard {
   width: 100%;
   background: var(--bg-primary);
@@ -137,7 +137,7 @@
   }
 }
 
-// 登录头部
+// Encabezado de inicio de sesión
 .loginHeader {
   display: flex;
   flex-direction: column;
@@ -145,7 +145,7 @@
   text-align: center;
 }
 
-// 标题行
+// Fila de título
 .titleRow {
   display: flex;
   align-items: center;
@@ -154,20 +154,20 @@
   flex-wrap: wrap;
 }
 
-// 标题
+// Título
 .title {
   font-size: 22px;
   font-weight: 800;
   color: var(--text-primary);
 }
 
-// 副标题
+// Subtítulo
 .subtitle {
   color: var(--text-secondary);
   font-size: 14px;
 }
 
-// 语言下拉选择
+// Selección desplegable de idioma
 .languageSelect {
   white-space: nowrap;
   border: 1px solid var(--border-color);
@@ -187,7 +187,7 @@
   }
 }
 
-// 连接信息框
+// Cuadro de información de conexión
 .connectionBox {
   background: var(--bg-secondary);
   border: 1px dashed var(--border-color);
@@ -214,7 +214,7 @@
   }
 }
 
-// 复选框行
+// Fila de casilla de verificación
 .toggleAdvanced {
   display: flex;
   justify-content: flex-start;
@@ -233,7 +233,7 @@
   }
 }
 
-// 错误提示框
+// Cuadro de aviso de error
 .errorBox {
   background: rgba($error-color, 0.1);
   border: 1px solid rgba($error-color, 0.4);
@@ -243,9 +243,9 @@
   font-size: 14px;
 }
 
-// ========== 启动动画（右侧） ==========
+// ========== Animación de inicio (Derecha) ==========
 
-// 启动动画进入效果
+// Efecto de entrada de animación de inicio
 @keyframes splashEnter {
   from {
     opacity: 0;
@@ -257,7 +257,7 @@
   }
 }
 
-// Logo 脉冲效果
+// Efecto de pulso del logo
 @keyframes splashLogoPulse {
   0%,
   100% {
@@ -268,7 +268,7 @@
   }
 }
 
-// 加载条动画
+// Animación de la barra de carga
 @keyframes splashLoading {
   0% {
     transform: scaleX(0);
@@ -287,7 +287,7 @@
   }
 }
 
-// 启动动画内容容器
+// Contenedor de contenido de animación de inicio
 .splashContent {
   display: flex;
   flex-direction: column;
@@ -296,7 +296,7 @@
   animation: splashEnter 0.6s ease-out;
 }
 
-// 启动动画 Logo
+// Logo de animación de inicio
 .splashLogo {
   height: 80px;
   width: auto;
@@ -305,7 +305,7 @@
   animation: splashLogoPulse 1.5s ease-in-out infinite;
 }
 
-// 启动动画标题
+// Título de animación de inicio
 .splashTitle {
   font-size: 28px;
   font-weight: 800;
@@ -314,7 +314,7 @@
   letter-spacing: -0.5px;
 }
 
-// 启动动画副标题
+// Subtítulo de animación de inicio
 .splashSubtitle {
   font-size: 16px;
   font-weight: 500;
@@ -323,7 +323,7 @@
   margin-top: -8px;
 }
 
-// 启动动画加载条容器
+// Contenedor de la barra de carga de animación de inicio
 .splashLoader {
   width: 120px;
   height: 3px;
@@ -333,7 +333,7 @@
   margin-top: $spacing-md;
 }
 
-// 启动动画加载条
+// Barra de carga de animación de inicio
 .splashLoaderBar {
   width: 100%;
   height: 100%;

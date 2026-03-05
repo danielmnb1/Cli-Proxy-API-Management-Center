@@ -48,7 +48,7 @@ const sidebarIcons: Record<string, ReactNode> = {
   system: <IconInfo size={18} />,
 };
 
-// Header action icons - smaller size for header buttons
+// Iconos de acción del encabezado - tamaño más pequeño para los botones del encabezado
 const headerIconProps: SVGProps<SVGSVGElement> = {
   width: 16,
   height: 16,
@@ -204,7 +204,7 @@ export function MainLayout() {
   const abbrBrandName = t('title.abbr');
   const isLogsPage = location.pathname.startsWith('/logs');
 
-  // 将顶栏高度写入 CSS 变量，确保侧栏/内容区计算一致，防止滚动时抖动
+  // Escribir la altura del encabezado en una variable CSS para asegurar que los cálculos del área de la barra lateral/contenido sean consistentes, evitando saltos al desplazarse
   useLayoutEffect(() => {
     const updateHeaderHeight = () => {
       const height = headerRef.current?.offsetHeight;
@@ -233,7 +233,7 @@ export function MainLayout() {
     };
   }, []);
 
-  // 将主内容区的中心点写入 CSS 变量，供底部浮层（配置面板操作栏、提供商导航）对齐到内容区
+  // Escribir el punto central del área de contenido principal en una variable CSS para que las capas flotantes inferiores (barra de operaciones del panel de configuración, navegación de proveedores) se alineen con el área de contenido
   useLayoutEffect(() => {
     const updateContentCenter = () => {
       const el = contentRef.current;
@@ -265,7 +265,7 @@ export function MainLayout() {
     };
   }, []);
 
-  // 5秒后自动收起品牌名称
+  // Contraer automáticamente el nombre de la marca después de 5 segundos
   useEffect(() => {
     brandCollapseTimer.current = setTimeout(() => {
       setBrandExpanded(false);
@@ -307,7 +307,7 @@ export function MainLayout() {
   const handleBrandClick = useCallback(() => {
     if (!brandExpanded) {
       setBrandExpanded(true);
-      // 点击展开后，5秒后再次收起
+      // Después de expandir al hacer clic, volver a contraer después de 5 segundos
       if (brandCollapseTimer.current) {
         clearTimeout(brandCollapseTimer.current);
       }
@@ -334,7 +334,7 @@ export function MainLayout() {
 
   useEffect(() => {
     fetchConfig().catch(() => {
-      // ignore initial failure; login flow会提示
+      // ignorar fallo inicial; el flujo de inicio de sesión avisará
     });
   }, [fetchConfig]);
 
@@ -479,8 +479,8 @@ export function MainLayout() {
             onClick={() => setSidebarCollapsed((prev) => !prev)}
             title={
               sidebarCollapsed
-                ? t('sidebar.expand', { defaultValue: '展开' })
-                : t('sidebar.collapse', { defaultValue: '收起' })
+                ? t('sidebar.expand', { defaultValue: 'Expandir' })
+                : t('sidebar.collapse', { defaultValue: 'Contraer' })
             }
           >
             {sidebarCollapsed ? headerIcons.chevronRight : headerIcons.chevronLeft}

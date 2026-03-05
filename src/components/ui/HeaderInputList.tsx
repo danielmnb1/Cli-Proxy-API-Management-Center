@@ -20,9 +20,9 @@ export function HeaderInputList({
   addLabel,
   disabled = false,
   keyPlaceholder = 'X-Custom-Header',
-  valuePlaceholder = 'value',
-  removeButtonTitle = 'Remove',
-  removeButtonAriaLabel = 'Remove',
+  valuePlaceholder = 'valor',
+  removeButtonTitle = 'Eliminar',
+  removeButtonAriaLabel = 'Eliminar',
 }: HeaderInputListProps) {
   const currentEntries = entries.length ? entries : [{ key: '', value: '' }];
 

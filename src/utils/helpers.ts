@@ -1,10 +1,10 @@
 /**
- * 辅助工具函数
- * 从原项目 src/utils/array.js, dom.js, html.js 迁移
+ * Funciones auxiliares de utilidad
+ * Migrado desde el proyecto original src/utils/array.js, dom.js, html.js
  */
 
 /**
- * 规范化数组响应（处理后端可能返回非数组的情况）
+ * Normaliza la respuesta del array (maneja casos donde el backend puede no devolver un array)
  */
 export function normalizeArrayResponse<T>(data: T | T[] | null | undefined): T[] {
   if (!data) return [];
@@ -13,7 +13,7 @@ export function normalizeArrayResponse<T>(data: T | T[] | null | undefined): T[]
 }
 
 /**
- * 防抖函数
+ * Función de eliminación de rebotes (debounce)
  */
 export function debounce<This, Args extends unknown[], Return>(
   func: (this: This, ...args: Args) => Return,
@@ -28,7 +28,7 @@ export function debounce<This, Args extends unknown[], Return>(
 }
 
 /**
- * 节流函数
+ * Función de regulación (throttle)
  */
 export function throttle<This, Args extends unknown[], Return>(
   func: (this: This, ...args: Args) => Return,
@@ -46,7 +46,7 @@ export function throttle<This, Args extends unknown[], Return>(
 }
 
 /**
- * HTML 转义（防 XSS）
+ * Escape de HTML (prevención de XSS)
  */
 export function escapeHtml(text: string): string {
   const div = document.createElement('div');
@@ -55,14 +55,14 @@ export function escapeHtml(text: string): string {
 }
 
 /**
- * 生成唯一 ID
+ * Generar ID único
  */
 export function generateId(): string {
   return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 }
 
 /**
- * 深拷贝对象
+ * Clonación profunda de objetos
  */
 export function deepClone<T>(obj: T): T {
   if (obj === null || typeof obj !== 'object') return obj;
@@ -81,7 +81,7 @@ export function deepClone<T>(obj: T): T {
 }
 
 /**
- * 延迟函数
+ * Función de retraso (sleep)
  */
 export function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));

@@ -1,5 +1,5 @@
 /**
- * 分页 Hook
+ * Hook de Paginación
  */
 
 import { useState, useMemo } from 'react';
@@ -42,7 +42,7 @@ export function usePagination<T>(
 
   const handleSetPageSize = (size: number) => {
     setPageSize(size);
-    setCurrentPage(1); // 重置到第一页
+    setCurrentPage(1); // Restablecer a la primera página
   };
 
   return {

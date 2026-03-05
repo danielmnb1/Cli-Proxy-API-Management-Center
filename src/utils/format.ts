@@ -1,6 +1,6 @@
 /**
- * 格式化工具函数
- * 从原项目 src/utils/string.js 迁移
+ * Funciones de utilidad de formato
+ * Migrado desde el proyecto original src/utils/string.js
  */
 
 const resolveDefaultLocale = (): string | undefined => {
@@ -12,7 +12,7 @@ const resolveDefaultLocale = (): string | undefined => {
 };
 
 /**
- * 隐藏 API Key 中间部分，仅保留前后两位
+ * Oculta la parte central de la clave API, conservando solo los dos primeros y últimos caracteres
  */
 export function maskApiKey(key: string): string {
   const trimmed = String(key || '').trim();
@@ -31,7 +31,7 @@ export function maskApiKey(key: string): string {
 }
 
 /**
- * 格式化文件大小
+ * Formatear tamaño de archivo
  */
 export function formatFileSize(bytes: number): string {
   if (bytes === 0) return '0 B';
@@ -44,7 +44,7 @@ export function formatFileSize(bytes: number): string {
 }
 
 /**
- * 格式化日期时间
+ * Formatear fecha y hora
  */
 export function formatDateTime(date: string | Date, locale?: string): string {
   const d = typeof date === 'string' ? new Date(date) : date;
@@ -65,7 +65,7 @@ export function formatDateTime(date: string | Date, locale?: string): string {
 }
 
 /**
- * 将 Unix 时间戳（秒/毫秒/微秒/纳秒）格式化为本地时间字符串
+ * Formatea un timestamp Unix (segundos/milisegundos/microsegundos/nanosegundos) a una cadena de tiempo local
  */
 export function formatUnixTimestamp(value: unknown, locale?: string): string {
   if (value === null || value === undefined || value === '') return '';
@@ -78,16 +78,16 @@ export function formatUnixTimestamp(value: unknown, locale?: string): string {
 
     const abs = Math.abs(asNumber);
 
-    // 秒：常见 10 位（~1e9）
+    // Segundos: comúnmente 10 dígitos (~1e9)
     if (abs < 1e11) return new Date(asNumber * 1000);
 
-    // 毫秒：常见 13 位（~1e12）
+    // Milisegundos: comúnmente 13 dígitos (~1e12)
     if (abs < 1e14) return new Date(asNumber);
 
-    // 微秒：常见 16 位（~1e15）
+    // Microsegundos: comúnmente 16 dígitos (~1e15)
     if (abs < 1e17) return new Date(Math.round(asNumber / 1000));
 
-    // 纳秒：常见 19 位（~1e18）
+    // Nanosegundos: comúnmente 19 dígitos (~1e18)
     return new Date(Math.round(asNumber / 1e6));
   })();
 
@@ -96,7 +96,7 @@ export function formatUnixTimestamp(value: unknown, locale?: string): string {
 }
 
 /**
- * 格式化数字（添加千位分隔符）
+ * Formatear número (añadir separador de miles)
  */
 export function formatNumber(num: number, locale?: string): string {
   const resolvedLocale = locale?.trim() || resolveDefaultLocale();
@@ -104,7 +104,7 @@ export function formatNumber(num: number, locale?: string): string {
 }
 
 /**
- * 截断长文本
+ * Truncar texto largo
  */
 export function truncateText(text: string, maxLength: number): string {
   if (text.length <= maxLength) {

@@ -1,10 +1,10 @@
 /**
- * 通用类型定义
+ * Definición de tipos comunes
  */
 
 export type Theme = 'light' | 'dark' | 'auto';
 
-export type Language = 'zh-CN' | 'en' | 'ru';
+export type Language = 'zh-CN' | 'en' | 'ru' | 'es';
 
 export type NotificationType = 'info' | 'success' | 'warning' | 'error';
 
@@ -33,7 +33,7 @@ export interface LoadingState {
   error: Error | null;
 }
 
-// 泛型异步状态
+// Estado asíncrono genérico
 export interface AsyncState<T> extends LoadingState {
   data: T | null;
 }

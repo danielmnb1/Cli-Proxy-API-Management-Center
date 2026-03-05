@@ -186,7 +186,7 @@ export function Modal({
           type="button"
           className="modal-close-floating"
           onClick={closeDisabled ? undefined : handleClose}
-          aria-label="Close"
+          aria-label="Cerrar"
           disabled={closeDisabled}
         >
           <IconX size={20} />

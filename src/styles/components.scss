@@ -149,8 +149,8 @@ textarea {
   border: 1px solid var(--border-color);
   margin-bottom: $spacing-md;
 
-  // 确保后续内容换行显示
-  + * {
+  // Asegurar que el contenido posterior se muestre con salto de línea
+  +* {
     display: block;
   }
 
@@ -193,6 +193,7 @@ textarea {
     opacity: 0;
     transform: translateX(100%);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -204,6 +205,7 @@ textarea {
     opacity: 1;
     transform: translateX(0);
   }
+
   to {
     opacity: 0;
     transform: translateX(100%);
@@ -234,9 +236,11 @@ textarea {
   &.success {
     border-color: rgba($success-color, 0.4);
   }
+
   &.warning {
     border-color: rgba($warning-color, 0.4);
   }
+
   &.error {
     border-color: rgba($error-color, 0.4);
   }
@@ -306,11 +310,11 @@ textarea {
     transition: transform $transition-fast;
   }
 
-  input:checked + .track {
+  input:checked+.track {
     background: var(--primary-color);
   }
 
-  input:checked + .track .thumb {
+  input:checked+.track .thumb {
     transform: translateX(20px);
   }
 
@@ -356,6 +360,7 @@ textarea {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -384,6 +389,7 @@ textarea {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -393,6 +399,7 @@ textarea {
   from {
     opacity: 1;
   }
+
   to {
     opacity: 0;
   }
@@ -408,7 +415,7 @@ textarea {
   display: flex;
   flex-direction: column;
   position: relative;
-  // 关闭按钮中心位置: right 12px + 16px = 28px, top 12px + 16px = 28px
+  // Posición central del botón de cierre: right 12px + 16px = 28px, top 12px + 16px = 28px
   transform-origin: calc(100% - 28px) 28px;
 
   &.modal-entering {
@@ -425,6 +432,7 @@ textarea {
     opacity: 0;
     transform: scale(0.85) translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: scale(1) translateY(0);
@@ -436,6 +444,7 @@ textarea {
     opacity: 1;
     transform: scale(1);
   }
+
   100% {
     opacity: 0;
     transform: scale(0);

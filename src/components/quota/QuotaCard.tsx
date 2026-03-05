@@ -1,5 +1,5 @@
 /**
- * Generic quota card component.
+ * Componente genérico de tarjeta de cuota.
  */
 
 import { useTranslation } from 'react-i18next';

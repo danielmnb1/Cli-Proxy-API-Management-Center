@@ -85,7 +85,7 @@ export const buildClaudeMessagesEndpoint = (baseUrl: string): string => {
   return `${trimmed}/v1/messages`;
 };
 
-// 根据 source (apiKey) 获取统计数据 - 与旧版逻辑一致
+// Obtener estadísticas por origen (apiKey) - consistente con la lógica de la versión anterior.
 export const getStatsBySource = (
   apiKey: string,
   keyStats: KeyStats,
@@ -109,7 +109,7 @@ export const getStatsBySource = (
   return { success, failure };
 };
 
-// 对于 OpenAI 提供商，汇总所有 apiKeyEntries 的统计 - 与旧版逻辑一致
+// Para el proveedor de OpenAI, resumir las estadísticas de todas las apiKeyEntries - consistente con la lógica de la versión anterior.
 export const getOpenAIProviderStats = (
   apiKeyEntries: ApiKeyEntry[] | undefined,
   keyStats: KeyStats,

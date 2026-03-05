@@ -1,5 +1,5 @@
 /**
- * 可用模型获取
+ * Obtención de modelos disponibles
  */
 
 import axios from 'axios';
@@ -81,7 +81,7 @@ const resolveBearerTokenFromAuthorization = (headers: Record<string, string>): s
 
 export const modelsApi = {
   /**
-   * Fetch available models from /v1/models endpoint (for system info page)
+   * Obtener modelos disponibles desde el endpoint /v1/models (para la página de información del sistema)
    */
   async fetchModels(baseUrl: string, apiKey?: string, headers: Record<string, string> = {}) {
     const endpoint = buildV1ModelsEndpoint(baseUrl);
@@ -102,8 +102,8 @@ export const modelsApi = {
   },
 
   /**
-   * Fetch models from /v1/models endpoint via api-call.
-   * Useful when the configured baseUrl is the upstream host root (e.g. https://api.example.com).
+   * Obtener modelos desde el endpoint /v1/models a través de api-call.
+   * Útil cuando la baseUrl configurada es la raíz del host upstream (ej. https://api.example.com).
    */
   async fetchV1ModelsViaApiCall(
     baseUrl: string,
@@ -136,7 +136,7 @@ export const modelsApi = {
   },
 
   /**
-   * Fetch models from /models endpoint via api-call (for OpenAI provider discovery)
+   * Obtener modelos desde el endpoint /models a través de api-call (para descubrimiento de proveedores OpenAI)
    */
   async fetchModelsViaApiCall(
     baseUrl: string,
@@ -181,8 +181,8 @@ export const modelsApi = {
   },
 
   /**
-   * Fetch Claude models from /v1/models via api-call.
-   * Anthropic requires `x-api-key` and `anthropic-version` headers.
+   * Obtener modelos de Claude desde /v1/models a través de api-call.
+   * Anthropic requiere encabezados `x-api-key` y `anthropic-version`.
    */
   async fetchClaudeModelsViaApiCall(
     baseUrl: string,
@@ -235,8 +235,8 @@ export const modelsApi = {
   },
 
   /**
-   * Fetch Gemini models from /v1beta/models via api-call.
-   * Gemini API accepts API key via query param or `x-goog-api-key` header.
+   * Obtener modelos de Gemini desde /v1beta/models a través de api-call.
+   * La API de Gemini acepta la clave de API mediante parámetro de consulta o encabezado `x-goog-api-key`.
    */
   async fetchGeminiModelsViaApiCall(
     baseUrl: string,

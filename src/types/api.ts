@@ -1,19 +1,19 @@
 /**
- * API 相关类型定义
- * 基于原项目 src/core/api-client.js 和各模块 API
+ * Definición de tipos relacionados con la API
+ * Basado en el proyecto original src/core/api-client.js y varias API de módulos
  */
 
-// HTTP 方法
+// Métodos HTTP
 export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE';
 
-// API 客户端配置
+// Configuración del cliente API
 export interface ApiClientConfig {
   apiBase: string;
   managementKey: string;
   timeout?: number;
 }
 
-// 请求选项
+// Opciones de solicitud
 export interface RequestOptions {
   method?: HttpMethod;
   headers?: Record<string, string>;
@@ -21,13 +21,13 @@ export interface RequestOptions {
   data?: unknown;
 }
 
-// 服务器版本信息
+// Información de versión del servidor
 export interface ServerVersion {
   version: string;
   buildDate?: string;
 }
 
-// API 错误
+// Error de API
 export type ApiError = Error & {
   status?: number;
   code?: string;

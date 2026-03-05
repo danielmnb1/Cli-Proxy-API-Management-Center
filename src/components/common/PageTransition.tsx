@@ -108,8 +108,8 @@ export function PageTransition({
           ? 'forward'
           : 'backward';
 
-    // When using iOS-style stacking, history POP within the same "section" can have equal route order.
-    // In that case, prefer treating navigation to an existing layer as a backward (pop) transition.
+    // Al usar el apilamiento estilo iOS, el POP de historial dentro de la misma "sección" puede tener el mismo orden de ruta.
+    // En ese caso, se prefiere tratar la navegación a una capa existente como una transición hacia atrás (pop).
     if (nextVariant === 'ios' && layers.some((layer) => layer.key === location.key)) {
       nextDirection = 'backward';
     }
@@ -201,7 +201,7 @@ export function PageTransition({
     layers,
   ]);
 
-  // Run Motion animation when animating starts
+  // Ejecutar la animación de Motion cuando comienza la animación
   useLayoutEffect(() => {
     if (!isAnimating) return;
 
@@ -296,7 +296,7 @@ export function PageTransition({
         )
       );
     } else {
-      // Exit animation: fade out with slight movement (runs simultaneously)
+      // Animación de salida: desvanecer (fade out) con un ligero movimiento (se ejecuta simultáneamente)
       if (exitingLayerEl) {
         exitingLayerEl.style.transform = buildVerticalTransform(exitBaseY);
         activeAnimations.push(
@@ -317,7 +317,7 @@ export function PageTransition({
         );
       }
 
-      // Enter animation: fade in with slight movement (runs simultaneously)
+      // Animación de entrada: desvanecer (fade in) con un ligero movimiento (se ejecuta simultáneamente)
       currentLayerEl.style.transform = buildVerticalTransform(enterFromY);
       currentLayerEl.style.opacity = '0';
       activeAnimations.push(

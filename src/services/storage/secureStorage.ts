@@ -1,6 +1,6 @@
 /**
- * 安全存储服务
- * 基于原项目 src/utils/secure-storage.js
+ * Servicio de almacenamiento seguro
+ * Basado en el archivo del proyecto original src/utils/secure-storage.js
  */
 
 import { encryptData, decryptData } from '@/utils/encryption';
@@ -11,7 +11,7 @@ interface StorageOptions {
 
 class SecureStorageService {
   /**
-   * 存储数据
+   * Almacenar datos
    */
   setItem(key: string, value: unknown, options: StorageOptions = {}): void {
     const { encrypt = true } = options;
@@ -28,7 +28,7 @@ class SecureStorageService {
   }
 
   /**
-   * 获取数据
+   * Obtener datos
    */
   getItem<T = unknown>(key: string, options: StorageOptions = {}): T | null {
     const { encrypt = true } = options;
@@ -40,46 +40,46 @@ class SecureStorageService {
       const decrypted = encrypt ? decryptData(raw) : raw;
       return JSON.parse(decrypted) as T;
     } catch {
-      // JSON解析失败,尝试兼容旧的纯字符串数据 (非JSON格式)
+      // Falló el análisis JSON, intentar compatibilidad con datos de cadena simple antiguos (no formato JSON)
       try {
-        // 如果是加密的,尝试解密后直接返回
+        // Si está cifrado, intentar descifrar y devolver directamente
         if (encrypt && raw.startsWith('enc::v1::')) {
           const decrypted = decryptData(raw);
-          // 解密后如果还不是JSON,返回原始字符串
+          // Después del descifrado, si aún no es JSON, devolver la cadena original
           return decrypted as T;
         }
-        // 非加密的纯字符串,直接返回
+        // Cadena simple no cifrada, devolver directamente
         return raw as T;
       } catch {
-        // 完全失败,静默返回null (避免控制台污染)
+        // Fallo total, devolver null silenciosamente (para evitar contaminar la consola)
         return null;
       }
     }
   }
 
   /**
-   * 删除数据
+   * Eliminar datos
    */
   removeItem(key: string): void {
     localStorage.removeItem(key);
   }
 
   /**
-   * 清空所有数据
+   * Limpiar todos los datos
    */
   clear(): void {
     localStorage.clear();
   }
 
   /**
-   * 迁移旧的明文缓存为加密格式
+   * Migrar claves antiguas de texto plano a formato cifrado
    */
   migratePlaintextKeys(keys: string[]): void {
     keys.forEach((key) => {
       const raw = localStorage.getItem(key);
       if (!raw) return;
 
-      // 如果已经是加密格式，跳过
+      // Si ya está en formato cifrado, omitir
       if (raw.startsWith('enc::v1::')) {
         return;
       }
@@ -88,7 +88,7 @@ class SecureStorageService {
       try {
         parsed = JSON.parse(raw);
       } catch {
-        // 原值不是 JSON，直接使用字符串
+        // El valor original no es JSON, usar la cadena directamente
         parsed = raw;
       }
 
@@ -101,7 +101,7 @@ class SecureStorageService {
   }
 
   /**
-   * 检查键是否存在
+   * Comprobar si existe la clave
    */
   hasItem(key: string): boolean {
     return localStorage.getItem(key) !== null;

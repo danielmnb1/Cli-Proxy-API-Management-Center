@@ -226,14 +226,14 @@ export function AuthFilesPage() {
   useEffect(() => {
     if (!isCurrentLayer) return;
     loadFiles();
-    void loadKeyStats().catch(() => {});
+    void loadKeyStats().catch(() => { });
     loadExcluded();
     loadModelAlias();
   }, [isCurrentLayer, loadFiles, loadKeyStats, loadExcluded, loadModelAlias]);
 
   useInterval(
     () => {
-      void refreshKeyStats().catch(() => {});
+      void refreshKeyStats().catch(() => { });
     },
     isCurrentLayer ? 240_000 : null
   );
@@ -290,8 +290,8 @@ export function AuthFilesPage() {
       const copied = await copyToClipboard(text);
       showNotification(
         copied
-          ? t('notification.link_copied', { defaultValue: 'Copied to clipboard' })
-          : t('notification.copy_failed', { defaultValue: 'Copy failed' }),
+          ? t('notification.link_copied', { defaultValue: 'Copiado al portapapeles' })
+          : t('notification.copy_failed', { defaultValue: 'Error al copiar' }),
         copied ? 'success' : 'error'
       );
     },
@@ -661,53 +661,53 @@ export function AuthFilesPage() {
 
       {batchActionBarVisible && typeof document !== 'undefined'
         ? createPortal(
-            <div className={styles.batchActionContainer} ref={floatingBatchActionsRef}>
-              <div className={styles.batchActionBar}>
-                <div className={styles.batchActionLeft}>
-                  <span className={styles.batchSelectionText}>
-                    {t('auth_files.batch_selected', { count: selectionCount })}
-                  </span>
-                  <Button
-                    variant="secondary"
-                    size="sm"
-                    onClick={() => selectAllVisible(pageItems)}
-                    disabled={selectablePageItems.length === 0}
-                  >
-                    {t('auth_files.batch_select_all')}
-                  </Button>
-                  <Button variant="ghost" size="sm" onClick={deselectAll}>
-                    {t('auth_files.batch_deselect')}
-                  </Button>
-                </div>
-                <div className={styles.batchActionRight}>
-                  <Button
-                    size="sm"
-                    onClick={() => batchSetStatus(selectedNames, true)}
-                    disabled={disableControls || selectedNames.length === 0}
-                  >
-                    {t('auth_files.batch_enable')}
-                  </Button>
-                  <Button
-                    variant="secondary"
-                    size="sm"
-                    onClick={() => batchSetStatus(selectedNames, false)}
-                    disabled={disableControls || selectedNames.length === 0}
-                  >
-                    {t('auth_files.batch_disable')}
-                  </Button>
-                  <Button
-                    variant="danger"
-                    size="sm"
-                    onClick={() => batchDelete(selectedNames)}
-                    disabled={disableControls || selectedNames.length === 0}
-                  >
-                    {t('common.delete')}
-                  </Button>
-                </div>
+          <div className={styles.batchActionContainer} ref={floatingBatchActionsRef}>
+            <div className={styles.batchActionBar}>
+              <div className={styles.batchActionLeft}>
+                <span className={styles.batchSelectionText}>
+                  {t('auth_files.batch_selected', { count: selectionCount })}
+                </span>
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  onClick={() => selectAllVisible(pageItems)}
+                  disabled={selectablePageItems.length === 0}
+                >
+                  {t('auth_files.batch_select_all')}
+                </Button>
+                <Button variant="ghost" size="sm" onClick={deselectAll}>
+                  {t('auth_files.batch_deselect')}
+                </Button>
               </div>
-            </div>,
-            document.body
-          )
+              <div className={styles.batchActionRight}>
+                <Button
+                  size="sm"
+                  onClick={() => batchSetStatus(selectedNames, true)}
+                  disabled={disableControls || selectedNames.length === 0}
+                >
+                  {t('auth_files.batch_enable')}
+                </Button>
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  onClick={() => batchSetStatus(selectedNames, false)}
+                  disabled={disableControls || selectedNames.length === 0}
+                >
+                  {t('auth_files.batch_disable')}
+                </Button>
+                <Button
+                  variant="danger"
+                  size="sm"
+                  onClick={() => batchDelete(selectedNames)}
+                  disabled={disableControls || selectedNames.length === 0}
+                >
+                  {t('common.delete')}
+                </Button>
+              </div>
+            </div>
+          </div>,
+          document.body
+        )
         : null}
     </div>
   );

@@ -1,6 +1,6 @@
 /**
- * 加密工具函数
- * 从原项目 src/utils/secure-storage.js 迁移
+ * Funciones de utilidad de cifrado
+ * Migrado desde el proyecto original src/utils/secure-storage.js
  */
 
 const ENC_PREFIX = 'enc::v1::';
@@ -59,7 +59,7 @@ function fromBase64(base64: string): Uint8Array {
 }
 
 /**
- * 加密数据
+ * Cifrar datos
  */
 export function encryptData(value: string): string {
   if (!value) return value;
@@ -75,7 +75,7 @@ export function encryptData(value: string): string {
 }
 
 /**
- * 解密数据
+ * Descifrar datos
  */
 export function decryptData(payload: string): string {
   if (!payload || !payload.startsWith(ENC_PREFIX)) {
@@ -94,7 +94,7 @@ export function decryptData(payload: string): string {
 }
 
 /**
- * 检查是否已加密
+ * Comprobar si está cifrado
  */
 export function isEncrypted(value: string): boolean {
   return value?.startsWith(ENC_PREFIX) || false;

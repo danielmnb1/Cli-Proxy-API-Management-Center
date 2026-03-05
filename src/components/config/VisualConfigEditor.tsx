@@ -201,7 +201,7 @@ function ApiKeysCardEditor({
             <div key={`${key}-${index}`} className="item-row">
               <div className="item-meta">
                 <div className="pill">#{index + 1}</div>
-                <div className="item-title">API Key</div>
+                <div className="item-title">Clave API</div>
                 <div className="item-subtitle">{maskApiKey(String(key || ''))}</div>
               </div>
               <div className="item-actions">

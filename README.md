@@ -2,7 +2,7 @@
 
 A single-file Web UI (React + TypeScript) for operating and troubleshooting the **CLI Proxy API** via its **Management API** (config, credentials, logs, and usage).
 
-[中文文档](README_CN.md)
+[English Documentation](README.md) | [Español](README_ES.md) | [中文文档](README_CN.md)
 
 **Main Project**: https://github.com/router-for-me/CLIProxyAPI  
 **Example URL**: https://remote.router-for.me/  
@@ -102,11 +102,12 @@ See `api.md` for the full authentication rules, server-side limits, and edge cas
 
 ## Internationalization
 
-Currently supports three languages:
+Currently supports four languages:
 
 - English (en)
 - Simplified Chinese (zh-CN)
 - Russian (ru)
+- Spanish (es)
 
 The UI language is automatically detected from browser settings and can be manually switched at the bottom of the page.
 

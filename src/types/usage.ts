@@ -1,18 +1,18 @@
 /**
- * 使用统计相关类型
- * 基于原项目 src/modules/usage.js
+ * Tipos relacionados con estadísticas de uso
+ * Basado en el proyecto original src/modules/usage.js
  */
 
-// 时间段类型
+// Tipos de período de tiempo
 export type TimePeriod = 'hour' | 'day';
 
-// 数据点
+// Punto de datos
 export interface DataPoint {
   timestamp: string;
   value: number;
 }
 
-// 模型使用统计
+// Estadísticas de uso del modelo
 export interface ModelUsage {
   modelName: string;
   requests: number;
@@ -22,7 +22,7 @@ export interface ModelUsage {
   cost: number;
 }
 
-// 使用统计数据
+// Datos de estadísticas de uso
 export interface UsageStats {
   overview: {
     totalRequests: number;
@@ -44,7 +44,7 @@ export interface UsageStats {
   modelStats: ModelUsage[];
 }
 
-// 模型价格
+// Precio del modelo
 export interface ModelPrice {
   modelName: string;
   inputPricePer1M: number;

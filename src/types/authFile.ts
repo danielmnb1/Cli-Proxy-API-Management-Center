@@ -1,6 +1,6 @@
 /**
- * 认证文件相关类型
- * 基于原项目 src/modules/auth-files.js
+ * Tipos relacionados con archivos de autenticación
+ * Basado en el archivo original src/modules/auth-files.js
  */
 
 export type AuthFileType =

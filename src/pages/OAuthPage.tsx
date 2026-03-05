@@ -160,7 +160,7 @@ export function OAuthPage() {
         ? 'ALL'
         : rawProjectId
       : undefined;
-    // 项目 ID 可选：留空自动选择第一个可用项目；输入 ALL 获取全部项目
+    // ID del proyecto opcional: dejar vacío para seleccionar el primer proyecto disponible; ingresar ALL para obtener todos los proyectos
     if (provider === 'gemini-cli') {
       updateProviderState(provider, { projectIdError: undefined });
     }
@@ -221,8 +221,8 @@ export function OAuthPage() {
       const errorMessage =
         status === 404
           ? t('auth_login.oauth_callback_upgrade_hint', {
-              defaultValue: 'Please update CLI Proxy API or check the connection.'
-            })
+            defaultValue: 'Please update CLI Proxy API or check the connection.'
+          })
           : message || undefined;
       updateProviderState(provider, {
         callbackSubmitting: false,
@@ -454,7 +454,7 @@ export function OAuthPage() {
           );
         })}
 
-        {/* Vertex JSON 登录 */}
+        {/* Inicio de sesión JSON de Vertex */}
         <Card
           title={
             <span className={styles.cardTitle}>
@@ -489,9 +489,8 @@ export function OAuthPage() {
                   {t('vertex_import.choose_file')}
                 </Button>
                 <div
-                  className={`${styles.fileName} ${
-                    vertexState.fileName ? '' : styles.fileNamePlaceholder
-                  }`.trim()}
+                  className={`${styles.fileName} ${vertexState.fileName ? '' : styles.fileNamePlaceholder
+                    }`.trim()}
                 >
                   {vertexState.fileName || t('vertex_import.file_placeholder')}
                 </div>
@@ -544,7 +543,7 @@ export function OAuthPage() {
           </div>
         </Card>
 
-        {/* iFlow Cookie 登录 */}
+        {/* Inicio de sesión con iFlow Cookie */}
         <Card
           title={
             <span className={styles.cardTitle}>

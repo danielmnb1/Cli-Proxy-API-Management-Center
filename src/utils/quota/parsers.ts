@@ -1,5 +1,5 @@
 /**
- * Normalization and parsing functions for quota data.
+ * Funciones de normalización y análisis para datos de cuota.
  */
 
 import type { ClaudeUsagePayload, CodexUsagePayload, GeminiCliQuotaPayload, KimiUsagePayload } from '@/types';
@@ -88,7 +88,7 @@ export function parseIdTokenPayload(value: unknown): Record<string, unknown> | n
     const parsed = JSON.parse(trimmed) as Record<string, unknown>;
     if (parsed && typeof parsed === 'object') return parsed;
   } catch {
-    // Continue to JWT parsing
+    // Continuar con el análisis de JWT
   }
   const segments = trimmed.split('.');
   if (segments.length < 2) return null;

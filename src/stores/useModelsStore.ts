@@ -1,5 +1,5 @@
 /**
- * 模型列表状态管理（带缓存）
+ * Gestión del estado de la lista de modelos (con caché)
  */
 
 import { create } from 'zustand';
@@ -33,7 +33,7 @@ export const useModelsStore = create<ModelsState>((set, get) => ({
   fetchModels: async (apiBase, apiKey, forceRefresh = false) => {
     const { cache, isCacheValid } = get();
 
-    // 检查缓存
+    // Verificar caché
     if (!forceRefresh && isCacheValid(apiBase) && cache) {
       set({ models: cache.data, error: null });
       return cache.data;
@@ -54,7 +54,7 @@ export const useModelsStore = create<ModelsState>((set, get) => ({
       return list;
     } catch (error: unknown) {
       const message =
-        error instanceof Error ? error.message : typeof error === 'string' ? error : 'Failed to fetch models';
+        error instanceof Error ? error.message : typeof error === 'string' ? error : 'Fallo al obtener los modelos';
       set({
         error: message,
         loading: false,

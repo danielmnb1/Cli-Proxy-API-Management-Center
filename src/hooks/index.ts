@@ -1,5 +1,5 @@
 /**
- * Hooks 统一导出
+ * Exportación unificada de Hooks
  */
 
 export { useApi } from './useApi';

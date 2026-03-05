@@ -1,5 +1,5 @@
 /**
- * 全局样式
+ * Estilos globales
  */
 
 @use './variables.scss' as *;
@@ -24,7 +24,7 @@ body.modal-open .content {
   overflow: hidden;
 }
 
-// 滚动条样式
+// Estilos de la barra de desplazamiento
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -43,7 +43,7 @@ body.modal-open .content {
   }
 }
 
-// 通用工具类
+// Clases de utilidad comunes
 .container {
   width: 100%;
   max-width: 1280px;
@@ -59,7 +59,7 @@ body.modal-open .content {
   @include text-ellipsis;
 }
 
-// 通用过渡
+// Transiciones comunes
 .fade-enter {
   opacity: 0;
 }

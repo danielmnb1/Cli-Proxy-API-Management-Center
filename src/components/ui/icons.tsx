@@ -1,7 +1,7 @@
 import type { SVGProps } from 'react';
 
-// Inline SVG icons (Lucide, ISC). We embed paths to keep the WebUI single-file/offline friendly.
-// Source: https://github.com/lucide-icons/lucide (via lucide-static).
+// Iconos SVG integrados (Lucide, ISC). Incrustamos las rutas para mantener la interfaz web compatible con un solo archivo y uso sin conexión.
+// Fuente: https://github.com/lucide-icons/lucide (vía lucide-static).
 
 export interface IconProps extends SVGProps<SVGSVGElement> {
   size?: number;

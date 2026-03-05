@@ -1,10 +1,10 @@
 /**
- * SCSS 混入
+ * Mixins de SCSS
  */
 
 @use './variables.scss' as *;
 
-// 响应式断点
+// Puntos de ruptura responsivos
 @mixin mobile {
   @media (max-width: #{$breakpoint-mobile}) {
     @content;
@@ -23,21 +23,21 @@
   }
 }
 
-// Flexbox 居中
+// Centrado con Flexbox
 @mixin flex-center {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-// 文本截断
+// Truncado de texto
 @mixin text-ellipsis {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-// 多行文本截断
+// Truncado de texto multilínea
 @mixin text-ellipsis-multiline($lines: 2) {
   display: -webkit-box;
   -webkit-line-clamp: $lines;
@@ -45,7 +45,7 @@
   overflow: hidden;
 }
 
-// 按钮重置
+// Restablecimiento de botón
 @mixin button-reset {
   border: none;
   background: none;

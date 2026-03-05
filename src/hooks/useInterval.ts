@@ -1,5 +1,5 @@
 /**
- * 定时器 Hook
+ * Hook de Temporizador (Interval)
  */
 
 import { useEffect, useRef } from 'react';

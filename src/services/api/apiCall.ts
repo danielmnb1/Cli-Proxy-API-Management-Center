@@ -1,5 +1,5 @@
 /**
- * Generic API call helper (proxied via management API).
+ * Ayudante genérico para llamadas a la API (proxied a través de la API de gestión).
  */
 
 import type { AxiosRequestConfig } from 'axios';
@@ -74,7 +74,7 @@ export const getApiCallErrorMessage = (result: ApiCallResult): string => {
 
   if (status && message) return `${status} ${message}`.trim();
   if (status) return `HTTP ${status}`;
-  return message || 'Request failed';
+  return message || 'La solicitud falló';
 };
 
 export const apiCallApi = {

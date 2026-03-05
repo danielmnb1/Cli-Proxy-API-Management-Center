@@ -1,5 +1,5 @@
 /**
- * Quota constants for API URLs, headers, and theme colors.
+ * Constantes de cuota para URLs de API, encabezados y colores de tema.
  */
 
 import type {
@@ -8,7 +8,7 @@ import type {
   TypeColorSet,
 } from '@/types';
 
-// Theme colors for type badges
+// Colores de tema para insignias de tipo
 export const TYPE_COLORS: Record<string, TypeColorSet> = {
   qwen: {
     light: { bg: '#e8f5e9', text: '#2e7d32' },
@@ -56,7 +56,7 @@ export const TYPE_COLORS: Record<string, TypeColorSet> = {
   },
 };
 
-// Antigravity API configuration
+// Configuración de la API de Antigravity
 export const ANTIGRAVITY_QUOTA_URLS = [
   'https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels',
   'https://daily-cloudcode-pa.sandbox.googleapis.com/v1internal:fetchAvailableModels',
@@ -113,7 +113,7 @@ export const ANTIGRAVITY_QUOTA_GROUPS: AntigravityQuotaGroupDefinition[] = [
   },
 ];
 
-// Gemini CLI API configuration
+// Configuración de la API de Gemini CLI
 export const GEMINI_CLI_QUOTA_URL =
   'https://cloudcode-pa.googleapis.com/v1internal:retrieveUserQuota';
 

@@ -42,7 +42,7 @@ interface ErrorLogItem {
   modified?: number;
 }
 
-// 初始只渲染最近 100 行，滚动到顶部再逐步加载更多（避免一次性渲染过多导致卡顿）
+// Inicialmente solo renderiza las últimas 100 líneas, carga más gradualmente al desplazarse hacia arriba (evita retrasos por renderizar demasiadas a la vez)
 const INITIAL_DISPLAY_LINES = 100;
 const MAX_BUFFER_LINES = 10000;
 const LONG_PRESS_MS = 650;
@@ -102,7 +102,7 @@ export function LogsPage() {
   const logRequestInFlightRef = useRef(false);
   const pendingFullReloadRef = useRef(false);
 
-  // 保存最新时间戳用于增量获取
+  // Guarda la última marca de tiempo para obtención incremental
   const latestTimestampRef = useRef<number>(0);
 
   const disableControls = connectionStatus !== 'connected';
@@ -139,7 +139,7 @@ export function LogsPage() {
         incremental && latestTimestampRef.current > 0 ? { after: latestTimestampRef.current } : {};
       const data = await logsApi.fetchLogs(params);
 
-      // 更新时间戳
+      // Actualizar marca de tiempo
       if (data['latest-timestamp']) {
         latestTimestampRef.current = data['latest-timestamp'];
       }
@@ -147,7 +147,7 @@ export function LogsPage() {
       const newLines = Array.isArray(data.lines) ? data.lines : [];
 
       if (incremental && newLines.length > 0) {
-        // 增量更新：追加新日志并限制缓冲区大小（避免内存与渲染膨胀）
+        // Actualización incremental: añade nuevos logs y limita el tamaño del búfer (evita hinchazón de memoria y renderizado)
         setLogState((prev) => {
           const prevRenderedCount = prev.buffer.length - prev.visibleFrom;
           const combined = [...prev.buffer, ...newLines];
@@ -155,7 +155,7 @@ export function LogsPage() {
           const buffer = dropCount > 0 ? combined.slice(dropCount) : combined;
           let visibleFrom = Math.max(prev.visibleFrom - dropCount, 0);
 
-          // 若用户停留在底部（跟随最新日志），则保持“渲染窗口”大小不变，避免无限增长
+          // Si el usuario permanece en la parte inferior (siguiendo los últimos logs), mantiene constante el tamaño de la "ventana de renderizado" para evitar un crecimiento infinito
           if (stickToBottom) {
             visibleFrom = Math.max(buffer.length - prevRenderedCount, 0);
           }
@@ -163,7 +163,7 @@ export function LogsPage() {
           return { buffer, visibleFrom };
         });
       } else if (!incremental) {
-        // 全量加载：默认只渲染最后 100 行，向上滚动再展开更多
+        // Carga completa: por defecto solo renderiza las últimas 100 líneas, desplaza hacia arriba para expandir más
         const buffer = newLines.slice(-MAX_BUFFER_LINES);
         const visibleFrom = Math.max(buffer.length - INITIAL_DISPLAY_LINES, 0);
         setLogState({ buffer, visibleFrom });
@@ -226,7 +226,7 @@ export function LogsPage() {
     setErrorLogsError('');
     try {
       const res = await logsApi.fetchErrorLogs();
-      // API 返回 { files: [...] }
+      // La API devuelve { files: [...] }
       setErrorLogs(Array.isArray(res.files) ? res.files : []);
     } catch (err: unknown) {
       console.error('Failed to load error logs:', err);
@@ -953,7 +953,7 @@ export function LogsPage() {
                 variant="secondary"
                 size="sm"
                 onClick={() => {
-                  void trace.refreshTraceUsageDetails().catch(() => {});
+                  void trace.refreshTraceUsageDetails().catch(() => { });
                 }}
                 loading={trace.traceLoading}
                 disabled={requestLogDownloading}

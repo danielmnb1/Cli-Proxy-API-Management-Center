@@ -1,5 +1,5 @@
 /**
- * Resolver functions for extracting data from auth files.
+ * Funciones de resolución para extraer datos de archivos de autenticación.
  */
 
 import type { AuthFileItem } from '@/types';

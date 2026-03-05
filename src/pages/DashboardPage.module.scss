@@ -67,9 +67,12 @@
 }
 
 @keyframes pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 1;
   }
+
   50% {
     opacity: 0.5;
   }
@@ -206,8 +209,8 @@
   align-items: center;
   gap: $spacing-sm;
 
-  // Button 内部的 span 需要 flex 对齐图标和文字
-  > span {
+  // El span dentro del botón necesita flex para alinear el icono y el texto
+  >span {
     display: inline-flex;
     align-items: center;
     gap: $spacing-sm;

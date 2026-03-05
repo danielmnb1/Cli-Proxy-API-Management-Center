@@ -1,5 +1,5 @@
 /**
- * 配置文件相关 API（/config.yaml）
+ * API relacionada con el archivo de configuración (/config.yaml)
  */
 
 import { apiClient } from './client';

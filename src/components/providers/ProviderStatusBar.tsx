@@ -4,8 +4,8 @@ import type { StatusBarData, StatusBlockDetail } from '@/utils/usage';
 import defaultStyles from '@/pages/AiProvidersPage.module.scss';
 
 /**
- * 根据成功率 (0–1) 在三个色标之间做 RGB 线性插值
- * 0 → 红 (#ef4444)  →  0.5 → 金黄 (#facc15)  →  1 → 绿 (#22c55e)
+ * Realiza una interpolación lineal RGB entre tres paradas de color según la tasa de éxito (0–1).
+ * 0 → Rojo (#ef4444)  →  0.5 → Amarillo dorado (#facc15)  →  1 → Verde (#22c55e)
  */
 const COLOR_STOPS = [
   { r: 239, g: 68, b: 68 },   // #ef4444
@@ -54,7 +54,7 @@ export function ProviderStatusBar({ statusData, styles: stylesProp }: ProviderSt
         ? s.statusRateMedium
         : s.statusRateLow;
 
-  // 点击外部关闭 tooltip（移动端）
+  // Cerrar el tooltip al hacer clic fuera (para dispositivos móviles).
   useEffect(() => {
     if (activeTooltip === null) return;
     const handler = (e: PointerEvent) => {

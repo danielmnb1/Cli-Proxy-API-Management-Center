@@ -1,9 +1,9 @@
 /**
- * OAuth 相关类型
- * 基于原项目 src/modules/oauth.js
+ * Tipos relacionados con OAuth
+ * Basado en el proyecto original src/modules/oauth.js
  */
 
-// OAuth 提供商类型
+// Tipos de proveedores OAuth
 export type OAuthProvider =
   | 'codex'
   | 'anthropic'
@@ -12,7 +12,7 @@ export type OAuthProvider =
   | 'kimi'
   | 'qwen';
 
-// OAuth 流程状态
+// Estado del flujo OAuth
 export interface OAuthFlow {
   provider: OAuthProvider;
   deviceCode: string;
@@ -23,19 +23,19 @@ export interface OAuthFlow {
   status: 'pending' | 'authorized' | 'expired' | 'error';
 }
 
-// OAuth 配置
+// Configuración OAuth
 export interface OAuthConfig {
   clientId?: string;
   clientSecret?: string;
   redirectUri?: string;
 }
 
-// OAuth 排除模型列表
+// Lista de modelos excluidos de OAuth
 export interface OAuthExcludedModels {
   models: string[];
 }
 
-// OAuth 模型别名
+// Alias de modelos OAuth
 export interface OAuthModelAliasEntry {
   name: string;
   alias: string;

@@ -59,9 +59,9 @@ export function ProviderNav() {
   const [indicatorTransitionsEnabled, setIndicatorTransitionsEnabled] = useState(false);
   const indicatorHasEnabledTransitionsRef = useRef(false);
 
-  // Only show this quick-switch overlay on the AI Providers list page.
-  // Note: The app uses iOS-style stacked page transitions inside `/ai-providers/*`,
-  // so this component can stay mounted while the user is on an edit route.
+  // Mostrar esta superposición de cambio rápido solo en la página de lista de proveedores de IA.
+  // Nota: La aplicación utiliza transiciones de página apiladas al estilo iOS dentro de `/ai-providers/*`,
+  // por lo que este componente puede permanecer montado mientras el usuario está en una ruta de edición.
   const normalizedPathname =
     location.pathname.length > 1 && location.pathname.endsWith('/')
       ? location.pathname.slice(0, -1)
@@ -88,7 +88,7 @@ export function ProviderNav() {
   }, []);
 
   const getScrollContainer = useCallback((): ScrollContainer => {
-    // Mobile layout uses document scroll (layout switches at 768px); desktop uses the `.content` scroller.
+    // El diseño móvil utiliza el desplazamiento del documento (el diseño cambia a los 768px); el escritorio utiliza el desplazador de `.content`.
     const isMobile = window.matchMedia('(max-width: 768px)').matches;
     if (isMobile) return window;
     return getContentScroller() ?? window;
@@ -131,7 +131,7 @@ export function ProviderNav() {
     if (!shouldShow) return;
     const contentScroller = getContentScroller();
 
-    // Listen to both: desktop scroll happens on `.content`; mobile uses `window`.
+    // Escuchar a ambos: el desplazamiento en escritorio ocurre en `.content`; en móvil se usa `window`.
     window.addEventListener('scroll', handleScroll, { passive: true });
     contentScroller?.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('resize', handleScroll);
@@ -160,7 +160,7 @@ export function ProviderNav() {
       height: itemEl.offsetHeight,
     });
 
-    // Avoid animating from an initial (0,0) state on first paint.
+    // Evitar la animación desde un estado inicial (0,0) en el primer renderizado.
     if (!indicatorHasEnabledTransitionsRef.current) {
       indicatorHasEnabledTransitionsRef.current = true;
       requestAnimationFrame(() => setIndicatorTransitionsEnabled(true));
@@ -173,7 +173,7 @@ export function ProviderNav() {
     return () => cancelAnimationFrame(raf);
   }, [activeProvider, shouldShow, updateIndicator]);
 
-  // Expose overlay height to the page, so it can reserve bottom padding and avoid being covered.
+  // Exponer la altura de la superposición a la página, para que pueda reservar el relleno inferior y evitar ser cubierta.
   useLayoutEffect(() => {
     if (!shouldShow) return;
 
@@ -206,7 +206,7 @@ export function ProviderNav() {
     setActiveProvider(providerId);
     updateIndicator(providerId);
 
-    // Mobile: scroll the document (header is fixed, so offset by header height).
+    // Móvil: desplazar el documento (el cabecera es fija, por lo que se compensa por la altura de la cabecera).
     if (!(container instanceof HTMLElement)) {
       const headerHeight = getHeaderHeight();
       const elementTop = element.getBoundingClientRect().top + window.scrollY;
@@ -245,10 +245,10 @@ export function ProviderNav() {
           style={
             (indicatorRect
               ? ({
-                  transform: `translate3d(${indicatorRect.x}px, ${indicatorRect.y}px, 0)`,
-                  width: indicatorRect.width,
-                  height: indicatorRect.height,
-                } satisfies CSSProperties)
+                transform: `translate3d(${indicatorRect.x}px, ${indicatorRect.y}px, 0)`,
+                width: indicatorRect.width,
+                height: indicatorRect.height,
+              } satisfies CSSProperties)
               : undefined) as CSSProperties | undefined
           }
         />

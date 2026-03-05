@@ -1,5 +1,5 @@
 /**
- * Builder functions for constructing quota data structures.
+ * Funciones constructoras para crear estructuras de datos de cuota.
  */
 
 import type {

@@ -1,5 +1,5 @@
 /**
- * 使用统计相关 API
+ * API relacionada con estadísticas de uso
  */
 
 import { apiClient } from './client';
@@ -24,23 +24,23 @@ export interface UsageImportResponse {
 
 export const usageApi = {
   /**
-   * 获取使用统计原始数据
+   * Obtener datos brutos de estadísticas de uso
    */
   getUsage: () => apiClient.get<Record<string, unknown>>('/usage', { timeout: USAGE_TIMEOUT_MS }),
 
   /**
-   * 导出使用统计快照
+   * Exportar instantánea de estadísticas de uso
    */
   exportUsage: () => apiClient.get<UsageExportPayload>('/usage/export', { timeout: USAGE_TIMEOUT_MS }),
 
   /**
-   * 导入使用统计快照
+   * Importar instantánea de estadísticas de uso
    */
   importUsage: (payload: unknown) =>
     apiClient.post<UsageImportResponse>('/usage/import', payload, { timeout: USAGE_TIMEOUT_MS }),
 
   /**
-   * 计算密钥成功/失败统计，必要时会先获取 usage 数据
+   * Calcular estadísticas de éxito/error de las claves, obteniendo los datos de uso primero si es necesario
    */
   async getKeyStats(usageData?: unknown): Promise<KeyStats> {
     let payload = usageData;

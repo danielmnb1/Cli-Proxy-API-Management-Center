@@ -108,7 +108,7 @@ Actualmente admite cuatro idiomas:
 - Chino Simplificado (zh-CN)
 - Ruso (ru)
 - Español (es)
-
+ hize lo mejor posible para la traduccion
 El idioma de la interfaz se detecta automáticamente a partir de la configuración del navegador y se puede cambiar manualmente en la parte inferior de la página.
 
 ## Compatibilidad del Navegador
